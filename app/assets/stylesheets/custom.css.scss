@@ -4,6 +4,8 @@
 
 $grayMediumLight: #eaeaea;
 
+$graySuperDark: #5C5D5F;
+
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
@@ -19,7 +21,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 0;
 }
 
 section {
@@ -48,6 +50,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  font-family: GothamMedium;
 }
 
 h2 {
@@ -73,6 +76,7 @@ p {
   font-size: 1.7em;
   color: white;
   text-transform: uppercase;
+  font-style: italic;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
@@ -187,4 +191,111 @@ input, textarea, select, .uneditable-input {
       border-bottom: 1px solid $grayLighter;
     }
   }
+}
+
+
+/* New Index */
+#firstbody { height:auto; min-height:500px; width:100%; background:#5C5D5F; }
+
+.wrap {margin:0 auto; width:1300px; }
+
+.extendedwrap {margin:0 auto; width:1200px; }
+
+#selltext { margin-top:90px; margin-left:215px; width: 393px; height:91px; }
+
+#submitbtn1 {  width: 229px; height:59px; }
+
+a#submitbtn1 { display:block; width:229px; margin-left:215px; height:59px; text-decoration:none;}
+
+a#submitbtn1:active { -moz-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000;
+            -webkit-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000;
+            box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000; }
+
+#graphic { background: #5C5D5F url('graphic.jpg') no-repeat; width:1198px; height:450px; }
+
+#secondbody { background: #98D6D5; height:541px; width:100%; }
+
+#textblockmid { background: #98D6D5 url(images/textblockmid.jpg) no-repeat; float:left; height:265px; width:533px; margin-top:30px; }
+
+#addcal { width:267px; height:64px; float:left; clear:left; margin-left:10px; }
+
+a#addcal { display:block; width:267px; height:64px; text-decoration:none; }
+
+#listcal { background:#98D6D5 url(images/listcal.jpg) no-repeat; width:547px; height:337px; float:right; margin: 30px 0 90px 0; }
+
+#arrowbottom { background:#98D6D5 url(images/arrowbottom.jpg) no-repeat center bottom; width:1199px; height:72px; clear:both; padding-top:4px; }
+
+#thirdbody { background: white; height:550px; }
+
+#submitbtn2 { width: 357px; height: 75px; margin-bottom:190px; }
+
+a#submitbtn2 { display:block; width: 357px; height: 75px; background: white url(images/submitbtn2.jpg) no-repeat center; text-decoration:none; }
+
+#textblockbottom { background: white url(images/textblockbottom.png) no-repeat center; width: 823px; height: 222px; margin-bottom:25px; margin-top: 150px;}
+
+#featured {
+  background: #F5F5F5;
+  height: 450px;
+}
+
+.col-full, .container {
+  width:1200px;
+  margin: 0 auto;
+}
+
+#top {
+  background: #F5F5F5;
+}
+
+.navbar {
+  margin:0;
+}
+
+.nav.pull-right {
+  margin-top:40px;
+}
+
+.nav.pull-right a {
+  font-size:1.5em;
+}
+
+.btn-home {
+margin-top:15px;
+}
+
+.topblock {
+  margin-left:290px;
+  margin-right:200px;
+  padding-top:30px;
+
+
+}
+
+h5 {
+  font-size:2.75em;
+}
+
+.orange {
+  color: #FF4500;
+}
+
+
+
+/* Homepage 2nd Tier */
+#second-text-block {
+width:1200px;
+height: 541px;
+background: url('caltext.jpg') no-repeat right top;
+margin:0;
+padding:0;
+line-height:2.9em;
+}
+
+#second-text-block h5 {
+  font-size:4.5em;
+  padding-top:105px;
+}
+
+#nomarg {
+  margin-top: 0 !important;
 }

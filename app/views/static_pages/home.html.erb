@@ -1,13 +1,30 @@
-<div class="center hero-unit">
-  <h1>Welcome to the Sample App</h1>
-
-  <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+<div id="graphic">
+  <div class="topblock">
+  <h5>Our Event Replicator sends your event to every online calendar in Orange County.</br> <span class="orange">Automatically.</span></h5>
+  	<%= link_to "See Plans & Pricing", plansandpricing_path, 
+                                class: "btn btn-large btn-success btn-home" %>
+  </div>
+</div>
+</div>
+<div id="secondbody">
+	<div class="extendedwrap">
+    	<div id="second-text-block">
+        <h5>Here's a full list<br /> of the event<br />calendars we use.</h5>
+        <span style="margin-bottom: -20px">Are we missing something?</span><br />
+      <%= link_to "Add Calendar", addcalendar_path, 
+                                class: "btn btn-large btn-success btn-home", id: "nomarg" %>
+      </div>
+    </div>
+</div>
+<div id="thirdbody">
+    <div class="wrap">
+       <center>
+            <div id="textblockbottom">&nbsp;</div>
+            <div id="submitbtn2"><a id="submitbtn2" href="https://send-event.com/post/pricing/">&nbsp;</a></div>
+            <div id="footerarrow">&nbsp;</div>
+        </center>
+    </div>
+</div>     
 </div>
 
 <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
