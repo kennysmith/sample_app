@@ -231,7 +231,7 @@ a#addcal { display:block; width:267px; height:64px; text-decoration:none; }
 
 a#submitbtn2 { display:block; width: 357px; height: 75px; background: white url(images/submitbtn2.jpg) no-repeat center; text-decoration:none; }
 
-#textblockbottom { background: white url(images/textblockbottom.png) no-repeat center; width: 823px; height: 222px; margin-bottom:25px; margin-top: 150px;}
+
 
 #featured {
   background: #F5F5F5;
@@ -298,4 +298,15 @@ line-height:2.9em;
 
 #nomarg {
   margin-top: 0 !important;
+}
+
+/* Homepage 3rd Tier */
+#textblockbottom { 
+background: white; 
+width: 1200px; 
+}
+
+#textblockbottom h5 {
+  font-site:4.5em;
+  padding-top:40px;
 }

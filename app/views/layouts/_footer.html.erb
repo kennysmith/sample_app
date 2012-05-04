@@ -1,13 +1,11 @@
-<footer class="footer">
-  <small>
-    <a href="http://railstutorial.org/">Rails Tutorial</a>
-    by Michael Hartl
-  </small>
-  <nav>
-    <ul>
+<footer class="navbar navbar-top">
+  <div class="navbar-inner">
+    <%= link_to image_tag("logofooter.png", alt: "SendEvent"), root_path, id: "logo" %>
+    <nav>
+    <ul class="nav pull-right">
       <li><%= link_to "About",   about_path %></li>
       <li><%= link_to "Contact", contact_path %></li>
-      <li><a href="http://news.railstutorial.org/">News</a></li>
     </ul>
   </nav>
+  </div>
 </footer>
