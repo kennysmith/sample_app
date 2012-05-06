@@ -4,7 +4,8 @@ before_filter :correct_user,   only: [:edit, :update]
 before_filter :admin_user, only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = Use
+    r.paginate(page: params[:page])
   end
 
   def show

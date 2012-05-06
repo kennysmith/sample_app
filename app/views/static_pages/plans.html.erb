@@ -1,9 +1,55 @@
 <% provide(:title, 'Plans and Pricing') %>
 
-    <h1>Plans and Pricing</h1>
-    <p>
-      Get help on the Ruby on Rails Tutorial at the
-      <a href="http://railstutorial.org/help">Rails Tutorial help page</a>.
-      To get help on this sample app, see the
-      <a href="http://railstutorial.org/book">Rails Tutorial book</a>.
-    </p>
+    <h1>Select a Package</h1>
+    <div id="price-tables">
+		<ul class="pricing-table pricing">
+			<li class="pt-column prices">
+				<div class="pt-package-1">
+					<div class="pt-header" style="background-color: ;" >
+						<h2>Single</h2>
+						<h3>
+							<span class="pt-currency">$</span>
+							<span class="pt-amount">10</span>
+							<span class="pt-terms"></span>
+						</h3>
+					</div>
+					<ul class="pt-feature-list pricing">
+						<li>Send 1 Event</li>
+						<li>Save time</li>
+						<li>Spread Awareness</li>
+						
+						<li class="no-icon"></li>
+					</ul>
+				</div>
+				<%= link_to "Select Package", new_subscription_path(:plan_id => 1), 
+                                class: "btn btn-large btn-success btn-home", id: "nomarg" %>
+      			
+				
+			</li>
+			
+			<li class="pt-column prices">
+				<div class="pt-package-2">
+					<div class="pt-header" style="background-color:'+secondPackageColor+';" >
+						<h2>Unlimited</h2>
+						<h3>
+							<span class="pt-currency">$</span>
+							<span class="pt-amount">30</span>
+							<span class="pt-terms">/mo</span>
+						</h3>
+					</div>
+
+
+					<ul class="pt-feature-list pricing">
+						<li>Send Unlimited Events</li>
+						<li>Save time</li>
+						<li>Spread Awareness</li>
+						<li class="no-icon"></li>
+					</ul>
+				</div>
+				<a class="pt-button pt-button-2" href="#" style="background-color:'+secondPackageColor+';">Select Package</a>
+			</li>
+			
+			
+		</ul>
+	</div>       
+	</div>             

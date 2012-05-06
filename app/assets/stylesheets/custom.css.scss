@@ -70,6 +70,10 @@ p {
 
 /* header */
 
+header {
+  background-color: #2C2C2C;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -241,6 +245,7 @@ a#submitbtn2 { display:block; width: 357px; height: 75px; background: white url(
 .col-full, .container {
   width:1200px;
   margin: 0 auto;
+  background-color: #2C2C2C;
 }
 
 #top {
@@ -310,4 +315,167 @@ width: 1200px;
   font-site:4.5em;
   padding-top:40px;
   width:800px;
+}
+
+.navbar-inner {
+  width:100%;
+}
+
+
+
+.pt-column {
+  float: left;
+  display: inline-block;
+  width: 218px;
+  margin: 0 5px;
+  padding: 0;
+  }
+
+.pt-package-1, .pt-package-2, .pt-package-3, .pt-package-4 {
+  margin: 0;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+  -moz-box-shadow: 0px 0px 4px #ccc;
+  -webkit-box-shadow: 0px 0px 4px #ccc;
+  box-shadow: 0px 0px 4px #ccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/*Package Colors*/
+
+.pt-package-1 .pt-header, .pt-button-1 {
+  background-color: #63b130;
+}
+.pt-package-2 .pt-header, .pt-button-2 {
+  background-color: #7097c3;
+}
+.pt-package-3 .pt-header, .pt-button-3 {
+  background-color: #3379d3;
+}
+.pt-package-4 .pt-header, .pt-button-4 {
+  background-color: #08358f;
+}
+
+/*Header Styles*/
+
+.pt-header {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
+  text-align: center;
+  -moz-box-shadow: inset 0px 34px 65px rgba(255, 255, 255, 0.35), inset 0px 0px 1px #000;
+  -webkit-box-shadow: inset 0px 34px 65px rgba(255, 255, 255, 0.35), inset 0px 0px 1px #000;
+  box-shadow: inset 0px 34px 65px rgba(255, 255, 255, 0.35), inset 0px 0px 1px #000;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pt-header h2 {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 0;
+  background: transparent url('images/pt-divider.png') repeat-x bottom;
+}
+
+.pt-header h3 {
+  font-size: 50px;
+  font-weight: 200;
+  padding: 2px 0 6px 0;
+}
+
+.pt-currency {
+  font-size: 34px;
+  font-weight: 100;
+}
+
+.pt-amount {
+  margin: 0 -14px 0 -12px;
+}
+
+.pt-terms {
+  text-transform: lowercase;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/*Feature Lists*/
+
+.pt-feature-list {
+  margin: 5px 0 0 0;
+}
+
+.pt-feature-list li {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 45px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #666;
+  font-size: 14px;
+  background-image: url('images/pt-checkmark-icon.png');
+  background-repeat: no-repeat;
+  background-position: 8px 10px;
+}
+
+.pt-feature-list li.no-icon {
+  background-image: none;
+}
+
+.pt-feature-list li:nth-of-type(even) {
+  background-color: #f5f5f5;
+}
+
+/*Buttons*/
+
+a.pt-button {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 0px 1px #000;
+  -webkit-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 0px 1px #000;
+  box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 0px 1px #000;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  margin: 10px 0;
+}
+
+a.pt-button:hover {
+  -moz-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.20), inset 0px 0px 1px #000;
+  -webkit-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.20), inset 0px 0px 1px #000;
+  box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.20), inset 0px 0px 1px #000;
+}
+
+a.pt-button:active {
+  -moz-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000;
+  -webkit-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000;
+  box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000;
+}
+
+
+ul.pricing, li.prices { margin: 0; padding: 0; list-style: none;}
+img { border: 0; }
+
+
+.pricing-table {
+  margin:0 auto;
+}
+
+#price-tables {
+  width:440px;
+  margin:0 auto;
+}
+
+
+.form-autowidth {
+  width:auto;
 }

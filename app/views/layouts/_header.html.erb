@@ -1,12 +1,12 @@
 
 <header class="navbar navbar-top">
   <div class="navbar-inner">
-    <div class="container">
       <%= link_to image_tag("logo.png", alt: "SendEvent"), root_path, id: "logo" %>
+      <div class="container">
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Plans & Pricing", plansandpricing_path %></li>
+          <li><%= link_to "Plans & Pricing", plans_path %></li>
           <% if signed_in? %>
             <li><%= link_to "Send Event", send_path %></li>
             <li id="fat-menu" class="dropdown">

@@ -11,16 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504000044) do
+ActiveRecord::Schema.define(:version => 20120506163756) do
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.integer  "kisses"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "card"
+    t.string   "description"
+    t.string   "plan"
+    t.string   "plan_id"
+    t.string   "email"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "stripe_customer_token"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           :default => false
+    t.boolean  "admin",                 :default => false
+    t.string   "stripe_customer_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

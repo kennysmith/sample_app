@@ -1,22 +1,31 @@
-SampleApp::Application.routes.draw do
-  resources :users
+  SampleApp::Application.routes.draw do
+  get "plans/new"
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]    
+  resources :subscriptions
+  resources :plans
 
   root to: 'static_pages#home'
 
-  match '/sendevent', to: 'sendevent#new'
-  match '/signin', to: 'sessions#new'
+  match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-
+      
+  match '/new',    to: 'subscriptions#new'
+  match '/about',   to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
+  match '/addcalendar', to: 'static_pages#addcalendar'
   match '/plansandpricing', to: 'static_pages#plans'
 
-  match '/about', to: 'static_pages#about'
 
-  match '/contact', to: 'static_pages#contact'
 
-  match '/static_pages', to: 'static_pages#home'
-
-  match '/addcalendar', to: 'static_pages#addcalendar'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

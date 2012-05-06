@@ -9,4 +9,9 @@ module ApplicationHelper
 			"#{base_title} | #{page_title}"
 		end
 	end
+
+	def is_payform(page_title)
+  		page_title != "Payment"
+	end
+
 end
