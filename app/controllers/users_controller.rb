@@ -20,12 +20,17 @@ before_filter :admin_user, only: :destroy
   def create
   	@user = User.new(params[:user])
   	if @user.save
-      sign_in @user
+      session[:user_id] = @user.id
   		flash[:success] = "Welcome to the Sample App!"
   		redirect_to @user
   	else
   		render 'new'
   	end
+  rescue Stripe::StripeError => e 
+    logger.error e.message
+    @user.errors.add :base, "There was a problem with your credit card"
+    @user.stripe_token = nil
+    render 'new'
   end
 
   def edit
@@ -44,6 +49,12 @@ before_filter :admin_user, only: :destroy
       redirect_to @user
     else
       render 'edit'
+    end
+    rescue Stripe::StripeError => e
+      logger.error e.message
+      @user.errors.add :base, "There was a problem with your credit card"
+      @user.stripe_token = nil
+      render :action => :edit
     end
   end
 

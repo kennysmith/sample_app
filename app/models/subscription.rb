@@ -21,10 +21,11 @@ class Subscription < ActiveRecord::Base
 
   def save_with_payment
     if valid?
+
       customer = Stripe::Customer.create(
         description:email, 
-        plan: "singleevent", 
-        card: stripe_card_token)
+        plan: "singleevent",
+        card: card )
       self.stripe_customer_token = customer.id
       save!
     end
