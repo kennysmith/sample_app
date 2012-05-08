@@ -2,12 +2,11 @@
 <h1>Sign up</h1>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span5 offset5">
     <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.label :name %> <%= f.text_field :name %>
 
       <%= f.label :email %>
       <%= f.text_field :email %>
@@ -31,7 +30,7 @@
       <div class="field">
         <%= label_tag :card_month, "Card Expiration" %>
         <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
-        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year" }%>
       </div>
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>

@@ -12,8 +12,7 @@
   </head>
   <body>
   	<%= render 'layouts/header' %>
-    <div id="top">
-      <div class="col-full" id="featured">
+    <%= is_payform(yield(:title)) %> 
         <% flash.each do |key, value| %>
           <%= content_tag(:div, value, class: "alert alert-#{key}") %>
         <% end %>

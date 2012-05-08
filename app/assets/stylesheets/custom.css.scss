@@ -239,7 +239,7 @@ a#submitbtn2 { display:block; width: 357px; height: 75px; background: white url(
 
 #featured {
   background: #F5F5F5;
-  height: 450px;
+  height: auto;
 }
 
 .col-full, .container {
@@ -298,7 +298,7 @@ line-height:2.9em;
 
 #second-text-block h5 {
   font-size:4.5em;
-  padding-top:105px;
+  padding-top:160px;
 }
 
 #nomarg {
@@ -478,4 +478,12 @@ img { border: 0; }
 
 .form-autowidth {
   width:auto;
+}
+
+#new_user label {
+  display: inline !important;
+}
+
+.navbar-inner .container {
+  background: none !important;
 }
