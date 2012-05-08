@@ -1,0 +1,69 @@
+<h1>Listing sendevents</h1>
+
+<table>
+  <tr>
+    <th>Event name</th>
+    <th>Event start month</th>
+    <th>Event start day</th>
+    <th>Event end month</th>
+    <th>Event end day</th>
+    <th>Event end year</th>
+    <th>Event start hour</th>
+    <th>Event start minute</th>
+    <th>Event start ampm</th>
+    <th>Event end hour</th>
+    <th>Event end minute</th>
+    <th>Event end ampm</th>
+    <th>Event description</th>
+    <th>Event location name</th>
+    <th>Event location address</th>
+    <th>Event location city</th>
+    <th>Event location state</th>
+    <th>Event location zip</th>
+    <th>Event website</th>
+    <th>Event cost</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sendevents.each do |sendevent| %>
+  <tr>
+    <td><%= sendevent.event_name %></td>
+    <td><%= sendevent.event_start_month %></td>
+    <td><%= sendevent.event_start_day %></td>
+    <td><%= sendevent.event_end_month %></td>
+    <td><%= sendevent.event_end_day %></td>
+    <td><%= sendevent.event_end_year %></td>
+    <td><%= sendevent.event_start_hour %></td>
+    <td><%= sendevent.event_start_minute %></td>
+    <td><%= sendevent.event_start_ampm %></td>
+    <td><%= sendevent.event_end_hour %></td>
+    <td><%= sendevent.event_end_minute %></td>
+    <td><%= sendevent.event_end_ampm %></td>
+    <td><%= sendevent.event_description %></td>
+    <td><%= sendevent.event_location_name %></td>
+    <td><%= sendevent.event_location_address %></td>
+    <td><%= sendevent.event_location_city %></td>
+    <td><%= sendevent.event_location_state %></td>
+    <td><%= sendevent.event_location_zip %></td>
+    <td><%= sendevent.event_website %></td>
+    <td><%= sendevent.event_cost %></td>
+    <td><%= sendevent.first_name %></td>
+    <td><%= sendevent.last_name %></td>
+    <td><%= sendevent.email %></td>
+    <td><%= sendevent.phone %></td>
+    <td><%= link_to 'Show', sendevent %></td>
+    <td><%= link_to 'Edit', edit_sendevent_path(sendevent) %></td>
+    <td><%= link_to 'Destroy', sendevent, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sendevent', new_sendevent_path %>

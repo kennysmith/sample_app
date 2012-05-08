@@ -1,4 +1,6 @@
   SampleApp::Application.routes.draw do
+  resources :sendevents
+
   get "plans/new"
 
   resources :users do
@@ -23,7 +25,7 @@
   match '/contact', to: 'static_pages#contact'
   match '/addcalendar', to: 'static_pages#addcalendar'
   match '/plansandpricing', to: 'static_pages#plans'
-  match '/send', to: 'static_pages#about'
+  match '/sendevent', to: 'sendevents#sendevent'
 
 
 

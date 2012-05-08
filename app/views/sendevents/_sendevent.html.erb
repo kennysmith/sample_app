@@ -1,0 +1,42 @@
+<%= form_for(@Sendevent) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :event_name %>
+      <%= f.text_field :event_name %>
+
+      <%= f.label :event_location_name %>
+      <%= f.text_field :event_location_name %>
+
+      <%= f.label :event_location_address %>
+      <%= f.text_field :event_location_address %>
+
+      <%= f.label :event_location_city, "Event City" %>
+      <%= f.test_field :event_location_city %>
+
+      <%= f.label :event_location_state %>
+      <%= f.text_field :event_location_state %>
+
+      <%= f.label :event_location_zip %>
+      <%= f.text_field :event_location_zip %>
+
+      <%= f.label :event_website, "Event Website" %>
+      <%= f.text_field :event_website %>
+
+      <%= f.label :event_cost, "Event Cost" %>
+      <%= f.text_field :event_cost %>
+
+      <%= f.label :first_name, "First Name" %>
+      <%= f.text_field :first_name %>
+
+      <%= f.label :last_name, "Last Name" %>
+      <%= f.text_field :last_name %>
+
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email %>
+
+      <%= f.label :phone, "Phone" %>
+      <%= f.text_field :phone %>
+
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
