@@ -13,6 +13,6 @@
 class Plan < ActiveRecord::Base
   attr_accessible :kisses, :name, :price
 
-    has_many :subscriptions
+    has_many :users
 
 end

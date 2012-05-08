@@ -18,6 +18,7 @@ class Subscription < ActiveRecord::Base
   	validates_presence_of :plan_id
   	validates_presence_of :email
    	attr_accessible :stripe_card_token, :plan_id, :email
+    attr_accessor :stripe_card_token
 
   def save_with_payment
     if valid?
@@ -25,9 +26,13 @@ class Subscription < ActiveRecord::Base
       customer = Stripe::Customer.create(
         description:email, 
         plan: "singleevent",
-        card: card )
+        card: stripe_card_token )
       self.stripe_customer_token = customer.id
       save!
     end
+    rescue Stripe::InvalidRequestError => e
+      logger.error "Stripe error while creating customer: #{e.message}"
+      errors.add :base, "There was a problem with your credit card."
+      false
   end
 end
