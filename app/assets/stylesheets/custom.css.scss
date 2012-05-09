@@ -22,6 +22,7 @@ html {
 
 body {
   padding-top: 0;
+  background-color: #5C5D5F;
 }
 
 section {
@@ -91,6 +92,12 @@ header {
   }
 }
 
+navbar-inner {
+webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+}
+
 /* footer */
 
 footer {
@@ -98,6 +105,8 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
+  float:left; 
+  clear:both;
   a {
     color: $gray;
     &:hover { 
@@ -215,7 +224,7 @@ a#submitbtn1:active { -moz-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.
             -webkit-box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000;
             box-shadow: inset 0px 23px 0px rgba(255, 255, 255, 0.10), inset 0px 5px 20px rgba(0, 0, 0, 0.20), inset 0px 0px 1px #000; }
 
-#graphic { background: #5C5D5F url('graphic.jpg') no-repeat; width:1198px; height:450px; }
+#graphic { background: #5C5D5F url('graphic.jpg') no-repeat; width:1198px; height:450px; margin:0 auto; margin-top:2px; }
 
 #secondbody { background: #98D6D5; height:541px; width:100%; }
 
@@ -482,6 +491,7 @@ img { border: 0; }
 
 #new_user label {
   display: inline !important;
+  color: white;
 }
 
 .navbar-inner .container {

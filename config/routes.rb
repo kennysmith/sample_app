@@ -1,6 +1,4 @@
   SampleApp::Application.routes.draw do
-  resources :sendevents
-
   get "plans/new"
 
   resources :users do

@@ -12,12 +12,19 @@
   </head>
   <body>
   	<%= render 'layouts/header' %>
-    <%= is_payform(yield(:title)) %> 
-        <% flash.each do |key, value| %>
-          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-        <% end %>
-        <%= yield %>
-      </div
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div id="<%= is_payform(yield(:title)) %>"> 
+            <div class="<%= is_login(yield(:title)) %>">
+              <% flash.each do |key, value| %>
+                <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+              <% end %>
+              <%= yield %>
+            </div>
+            </div 
+        </div> 
+      </div>     
     </div> 
     <%= render 'layouts/footer' %>
     <%= debug(params) if Rails.env.development? %>

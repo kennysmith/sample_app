@@ -10,16 +10,7 @@ class SendeventsController < ApplicationController
     end
   end
 
-  # GET /sendevents/1
-  # GET /sendevents/1.json
-  def show
-    @sendevent = Sendevent.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @sendevent }
-    end
-  end
+ 
 
   # GET /sendevents/new
   # GET /sendevents/new.json
