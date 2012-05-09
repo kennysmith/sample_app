@@ -1,9 +1,10 @@
-
+<div id="GraydientBackground">
 <header class="navbar navbar-top">
   <div class="navbar-inner">
       <%= link_to image_tag("logo.png", alt: "SendEvent"), root_path, id: "logo" %>
       <div class="container">
       <nav>
+        <% if is_payform(yield(:title)) %>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
@@ -26,7 +27,9 @@
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
+        <% end %>
       </nav>
     </div>
   </div>
 </header>
+</div>

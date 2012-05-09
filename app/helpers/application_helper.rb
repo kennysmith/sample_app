@@ -11,22 +11,11 @@ module ApplicationHelper
 	end
 
 	def is_payform(page_title)
-  		reg_id = "secondary"
-  		else_id = "primary"
   		if page_title == "Sign up"
-  			reg_id
-        else
-        	else_id
-        end
+  			false
+  		else
+  			true
+  		end
 	end
 
-	def is_login(page_title)
-		log_class = "container"
-		unlog_class = "main"
-		if page_title == "Sign up"
-			log_class
-		else
-			unlog_class
-		end
-	end
 end

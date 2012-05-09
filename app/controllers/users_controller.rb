@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new
     plan = Plan.find(params[:plan_id])
     @user = plan.users.build
+    @plan = plan
   end
 
   def create

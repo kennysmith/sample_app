@@ -12,7 +12,18 @@ $graySuperDark: #5C5D5F;
   box-sizing: border-box;
 }
 
-
+#GraydientBackground {
+  background-color: #2C2C2C;
+  background-image: -moz-linear-gradient(top, #222, #333);
+  background-image: -ms-linear-gradient(top, #222, #333);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222), to(#333));
+  background-image: -webkit-linear-gradient(top, #222, #333);
+  background-image: -o-linear-gradient(top, #222, #333);
+  background-image: linear-gradient(top, #222, #333);
+  background-repeat: repeat-x;
+  height: 100%;
+  width:100%;
+}
 
 /* universal */
 
@@ -68,6 +79,51 @@ p {
   line-height: 1.7em;
 }
 
+#GraydientBackground h1 {
+  color: #FFD800;
+  font: bold 22px 'Arial', 'Helvetica', sans-serif;
+  margin-bottom: 3px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  letter-spacing: 0;
+  }
+
+#GraydientBackground strong {
+  color:white;
+}
+
+#GraydientBackground p {
+  color: #919191;
+  font: 13px/20px 'Arial', 'Helvetica', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+
+#GraydientBackground h3 {
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  color: white;
+  font: bold 16px/32px 'Arial', 'Helvetica', sans-serif;
+  margin-bottom: 15px;
+  padding-left: 41px;
+}
+
+#GraydientBackground h3.one {
+  background-image: url('payment_one.png');
+}
+
+#GraydientBackground h3.two {
+  background-image: url('payment_two.png');
+}
+
+#usernew label {
+  color: #C3C3C3;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: right;
+  padding-top:12px;
+}
 
 /* header */
 
@@ -170,11 +226,37 @@ aside {
 /* forms */
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  width: 300px;
   padding: 10px;
   height: auto;
   margin-bottom: 15px;
-  @include box_sizing;
+}
+
+#card_code {
+  width:50px;
+}
+
+#card_month, #card_year {
+  width:100px;
+}
+
+#submitacct {
+  margin-top:20px;
+  margin-left: 120px;
+}
+
+.control-label {
+  color: #C3C3C3;
+  font-weight:bold;
+  text-align:right;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  float: left;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 14px;
+  margin: 15px 10px 0 0;
+  width: 114px;
 }
 
 #error_explanation {
@@ -238,7 +320,7 @@ a#addcal { display:block; width:267px; height:64px; text-decoration:none; }
 
 #arrowbottom { background:#98D6D5 url(images/arrowbottom.jpg) no-repeat center bottom; width:1199px; height:72px; clear:both; padding-top:4px; }
 
-#thirdbody { background: white; height:550px; }
+#thirdbody { background: white; height:350px; }
 
 #submitbtn2 { width: 357px; height: 75px; }
 
@@ -249,6 +331,7 @@ a#submitbtn2 { display:block; width: 357px; height: 75px; background: white url(
 #featured {
   background: #F5F5F5;
   height: auto;
+  width:1198px;
 }
 
 .col-full, .container {
@@ -489,11 +572,7 @@ img { border: 0; }
   width:auto;
 }
 
-#new_user label {
-  display: inline !important;
-  color: white;
-}
-
 .navbar-inner .container {
   background: none !important;
 }
+
