@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   belongs_to :plan
   has_many :sendevent
 
-  validates_presence_of :plan_ide
+  validates_presence_of :plan_id
   validates_presence_of :email
 
   attr_accessible :stripe_card_token, :plan_id, :email
