@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    @plan = Plan.find(params[:plan_id])
     @user = User.new(params[:user])
     if @user.save_with_payment
       sign_in @user

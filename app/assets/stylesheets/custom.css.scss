@@ -419,7 +419,7 @@ width: 1200px;
   float: left;
   display: inline-block;
   width: 218px;
-  margin: 0 5px;
+  margin: 0 15px 0 0;
   padding: 0;
   }
 
@@ -439,7 +439,7 @@ width: 1200px;
 /*Package Colors*/
 
 .pt-package-1 .pt-header, .pt-button-1 {
-  background-color: #63b130;
+  background-color: #98D6D5;
 }
 .pt-package-2 .pt-header, .pt-button-2 {
   background-color: #7097c3;
@@ -459,9 +459,6 @@ width: 1200px;
   border-radius: 3px;
   color: #fff;
   text-align: center;
-  -moz-box-shadow: inset 0px 34px 65px rgba(255, 255, 255, 0.35), inset 0px 0px 1px #000;
-  -webkit-box-shadow: inset 0px 34px 65px rgba(255, 255, 255, 0.35), inset 0px 0px 1px #000;
-  box-shadow: inset 0px 34px 65px rgba(255, 255, 255, 0.35), inset 0px 0px 1px #000;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -554,7 +551,7 @@ a.pt-button:active {
 }
 
 
-ul.pricing, li.prices { margin: 0; padding: 0; list-style: none;}
+ul.pricing, li.prices { padding: 0; list-style: none;}
 img { border: 0; }
 
 
@@ -563,7 +560,7 @@ img { border: 0; }
 }
 
 #price-tables {
-  width:440px;
+  width:500px;
   margin:0 auto;
 }
 
