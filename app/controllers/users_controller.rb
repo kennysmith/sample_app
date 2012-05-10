@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if @user.save_with_payment
       sign_in @user
       flash[:success] = "Welcome to the SendEvent!"
-      redirect_to @sendevent
+      redirect_to @user
     else
       render 'new'
     end
@@ -64,9 +64,6 @@ class UsersController < ApplicationController
 
   private
 
-    def signed_in_user
-      redirect_to signin_path, notice: "Please sign in." unless signed_in?
-    end
 
     def correct_user
       @user = User.find(params[:id])

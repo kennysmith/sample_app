@@ -31,7 +31,7 @@
         </div>  
 
         <div class="control-group">  
-          
+          <%= f.hidden_field :sends_remaining, :value => sends_remaining %>
           <%= f.hidden_field :plan_id, :class => "control-label" %>
           <%= f.hidden_field :stripe_card_token %>
         </div>
