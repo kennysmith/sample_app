@@ -2,8 +2,13 @@
 <div id="graphic">
   <div class="topblock">
   <h5>Our Event Replicator sends your event to every online calendar in Orange County.</br> <span class="orange">Automatically.</span></h5>
-  	<%= link_to "See Plans & Pricing", plansandpricing_path, 
+  	            <% if signed_in? %>
+              <%= link_to "Send Event", sendevent_path, 
                                 class: "btn btn-large btn-success btn-home" %>
+            <% else %>
+              <%= link_to "See Plans & Pricing", plansandpricing_path, 
+                                class: "btn btn-large btn-success btn-home" %>
+            <% end %>
   </div>
 </div>
 </div>
@@ -25,8 +30,13 @@ and easiest way to send your event
 to 30 Orange County event calendars.
 Send your event today.</h5></center>
             </div>
-<%= link_to "See Plans & Pricing", plansandpricing_path, 
+            <% if signed_in? %>
+              <%= link_to "Send Event", sendevent_path, 
                                 class: "btn btn-large btn-success btn-home" %>
+            <% else %>
+              <%= link_to "See Plans & Pricing", plansandpricing_path, 
+                                class: "btn btn-large btn-success btn-home" %>
+            <% end %>
         </center>
     </div>
 </div>     

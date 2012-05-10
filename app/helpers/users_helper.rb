@@ -8,4 +8,10 @@ module UsersHelper
 	    image_tag(gravatar_url, alt: user.name, class: "gravatar")
 	end
 
+	def plan_name(planid) 
+		plan = Plan.find(params[planid])
+		plan
+
+	end
+
 end

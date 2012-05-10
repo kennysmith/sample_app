@@ -1,10 +1,12 @@
 <% provide(:title, 'Sign up') %>
+<% plan_object = Plan.find(params[:plan_id]) %>
+<% sends_remaining = plan_object.kisses %>
 <div id="GraydientBackground">
 <div style="width:1200px; margin:0 auto;">
 <div class="row">
   <div class="span7 offset4">
-    <h1>Selected Plan: <strong><%= @plan.name %></strong></h1>
-<p>You are signing up for the <%= @plan.name %> plan, which will enable you to send <%= @plan.kisses %> events per month.  You will be billed $<%= @plan.price %>0 per month.
+    <h1>Selected Plan: <strong><%= plan_object.name %></strong></h1>
+    <p>You're signing up for the <%= plan_object.name %> plan, which will allow you to send <%= plan_object.kisses %> events every month!  You will be billed <%= plan_object.price %>0 on a monthly basis.</p> 
         <%= form_for @user, :html => {:class => "form-inline"} do |f|  %>
         <%= render 'shared/error_messages' %>
         <h3 class="one">Your account details</h3>
@@ -29,6 +31,7 @@
         </div>  
 
         <div class="control-group">  
+          
           <%= f.hidden_field :plan_id, :class => "control-label" %>
           <%= f.hidden_field :stripe_card_token %>
         </div>

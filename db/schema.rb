@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508002311) do
+ActiveRecord::Schema.define(:version => 20120510063548) do
 
   create_table "plans", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120508002311) do
     t.string   "stripe_customer_token"
     t.string   "plan"
     t.string   "plan_id"
+    t.string   "sends_remaining"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

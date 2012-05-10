@@ -23,7 +23,8 @@
   match '/contact', to: 'static_pages#contact'
   match '/addcalendar', to: 'static_pages#addcalendar'
   match '/plansandpricing', to: 'static_pages#plans'
-  match '/sendevent', to: 'sendevents#sendevent'
+  match '/sendevent', to: 'sendevents#new'
+  match '/sendevents', to: 'sendevents#new'
 
 
 

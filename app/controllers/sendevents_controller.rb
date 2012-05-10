@@ -2,7 +2,6 @@ class SendeventsController < ApplicationController
   # GET /sendevents
   # GET /sendevents.json
   def index
-    @sendevents = Sendevent.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,15 +31,8 @@ class SendeventsController < ApplicationController
   # POST /sendevents.json
   def create
     @sendevent = Sendevent.new(params[:sendevent])
-
+    redirect_to root_path
     respond_to do |format|
-      if @sendevent.save
-        format.html { redirect_to @sendevent, notice: 'Sendevent was successfully created.' }
-        format.json { render json: @sendevent, status: :created, location: @sendevent }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @sendevent.errors, status: :unprocessable_entity }
-      end
     end
   end
 

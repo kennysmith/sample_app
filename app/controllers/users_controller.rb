@@ -16,16 +16,14 @@ class UsersController < ApplicationController
     @user = User.new
     plan = Plan.find(params[:plan_id])
     @user = plan.users.build
-    @plan = plan
   end
 
   def create
-    @plan = Plan.find(params[:plan_id])
     @user = User.new(params[:user])
     if @user.save_with_payment
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      flash[:success] = "Welcome to the SendEvent!"
+      redirect_to @sendevent
     else
       render 'new'
     end
@@ -65,6 +63,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def signed_in_user
+      redirect_to signin_path, notice: "Please sign in." unless signed_in?
+    end
 
     def correct_user
       @user = User.find(params[:id])

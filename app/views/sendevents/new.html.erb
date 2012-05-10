@@ -1,5 +1,7 @@
-<h1>New sendevent</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', sendevents_path %>
+<% provide(:title, 'Send Event') %>
+<div class="container">
+	<div class="span5 offset6">
+		<p>Enter your event details and we'll automatically send your event to over 30 Orange County events calendars.</p>
+		<%= render 'sendevent' %>
+	</div>
+</div>
