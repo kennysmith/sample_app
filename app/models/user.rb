@@ -25,7 +25,7 @@
 #
 class User < ActiveRecord::Base
   belongs_to :plan
-  has_many :sendevent
+  has_many :sendevents
 
   validates_presence_of :plan_id
   validates_presence_of :email

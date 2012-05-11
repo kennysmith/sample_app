@@ -6,6 +6,8 @@ $grayMediumLight: #eaeaea;
 
 $graySuperDark: #5C5D5F;
 
+$greenblue: #98D6D5;
+
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
@@ -23,6 +25,17 @@ $graySuperDark: #5C5D5F;
   background-repeat: repeat-x;
   height: 100%;
   width:100%;
+}
+
+.GreenBlueBG {
+  background-color: $greenblue;
+  height:100%;
+  width: 100%;
+}
+
+GreenBlueBG.h1 {
+  color:#333;
+  padding-top:15px;
 }
 
 /* universal */
@@ -55,6 +68,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  padding-top:15px;
 }
 
 h1 {
@@ -243,10 +257,10 @@ input, textarea, select, .uneditable-input {
 }
 
 .control-label {
-  color: #C3C3C3;
+  color: #000;
   font-weight:bold;
   text-align:right;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 1px rgba(188, 188, 188, 0.4);
   float: left;
   display: block;
   font-size: 14px;

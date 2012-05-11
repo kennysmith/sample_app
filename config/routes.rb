@@ -1,4 +1,6 @@
   SampleApp::Application.routes.draw do
+
+
   get "plans/new"
 
   resources :users do
@@ -9,7 +11,6 @@
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]    
-  resources :subscriptions
   resources :plans
 
   root to: 'static_pages#home'
@@ -23,8 +24,11 @@
   match '/contact', to: 'static_pages#contact'
   match '/addcalendar', to: 'static_pages#addcalendar'
   match '/plansandpricing', to: 'static_pages#plans'
-  match '/sendevent', to: 'sendevents#new'
-  match '/sendevents', to: 'sendevents#new'
+  match '/postevent', to: 'events#new'
+  match '/events', to: 'events#index'
+  match '/edit_event', to: 'events#edit'
+  match '/new_event', to: 'events#new'
+
 
 
 

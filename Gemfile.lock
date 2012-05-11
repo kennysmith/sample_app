@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/paneq/calendar_date_select.git
+  revision: 977048211b94599fe0f08eb37a481f3d69df48f6
+  specs:
+    calendar_date_select (1.16.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -162,6 +168,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.0.2)
   bootstrap-will_paginate (= 0.0.5)
+  calendar_date_select!
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
   factory_girl_rails (= 1.4.0)

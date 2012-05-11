@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510063548) do
+ActiveRecord::Schema.define(:version => 20120511000834) do
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "start_time"
+    t.string   "end_time"
+    t.text     "description"
+    t.string   "location_name"
+    t.string   "location_address"
+    t.string   "location_city"
+    t.string   "location_state"
+    t.string   "location_zip"
+    t.string   "website"
+    t.string   "cost"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "plans", :force => true do |t|
     t.string   "name"
@@ -48,6 +70,9 @@ ActiveRecord::Schema.define(:version => 20120510063548) do
     t.string   "phone"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.string   "event_start_year"
+    t.string   "event_start_date"
+    t.string   "event_end_date"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -69,10 +94,10 @@ ActiveRecord::Schema.define(:version => 20120510063548) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",                 :default => false
-    t.string   "stripe_customer_token"
     t.string   "plan"
     t.string   "plan_id"
     t.string   "sends_remaining"
+    t.string   "stripe_customer_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

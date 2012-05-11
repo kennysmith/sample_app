@@ -1,27 +1,33 @@
 <% provide(:title, "Edit user") %> 
-<h1>Update your profile</h1>
 
+<div class="GreenBlueBG">
+<div style="width:1200px; margin:0 auto;">
 <div class="row">
-  <div class="span6 offset3">
-  <%= form_for(@user) do |f| %>
+  <div class="span7 offset4">
+    <h1>Update your profile</h1>
+  <%= form_for @user, :html => { :class => "form-inline" } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
+      <div class="control-group">
+        <%= f.label :name, :class => "control-label" %> 
+        <%= f.text_field :name %> 
+      </div>    
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <div class="control-group">  
+        <%= f.label :email, :class => "control-label" %> 
+        <%= f.text_field :email %>
+      </div>
+        
+      <div class="control-group">  
+        <%= f.label :password, :class => "control-label" %> 
+        <%= f.password_field :password %>
+      </div>  
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+      <div class="control-group">  
+        <%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %> 
+        <%= f.password_field :password_confirmation %>
+      </div>  
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirm Password" %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary", id: "submitacct" %>
     <% end %>
-
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
   </div>
 </div>

@@ -1,9 +1,8 @@
 <% provide(:title, @user.name) %>
-<div class="row">
+<div class="container">
 	<div class="span4">
 		
 			<h1>
-				Enter your event details and we'll automatically send your event to over 30 Orange County events calendars!
 				<em>Note: You have <%= pluralize(@user.sends_remaining, 'send') %>  remaining this month.</em>
 				<%= @user.email %>
 			</h1>
