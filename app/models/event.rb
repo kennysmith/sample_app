@@ -1,3 +1,16 @@
 class Event < ActiveRecord::Base
-  attr_accessible :cost, :description, :email, :end_date, :end_time, :first_name, :last_name, :location_address, :location_city, :location_name, :location_state, :location_zip, :name, :phone, :start_date, :start_time, :website
+  attr_accessible :enddate, :endtime, :name, :startdate, :starttime
+
+  belongs_to :user
+  validates :user_id, presence: true
+
+
+  validates(:name, presence: true)
+  validates(:enddate, presence: true)
+  validates(:endtime, presence: true)
+  validates(:startdate, presence: true)
+  validates(:starttime, presence: true)
+
+
+  default_scope order: 'events.created_at DESC'
 end

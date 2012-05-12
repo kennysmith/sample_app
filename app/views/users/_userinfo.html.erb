@@ -1,0 +1,25 @@
+        <h3 class="one">Your account details</h3>
+        <div class="control-group">
+          <%= f.label :name, :class => "control-label" %> 
+          <%= f.text_field :name %>
+        </div>  
+
+        <div class="control-group">
+          <%= f.label :email, :class => "control-label" %>
+          <%= f.text_field :email %>
+        </div>  
+
+        <div class="control-group">
+          <%= f.label :password, :class => "control-label" %>
+          <%= f.password_field :password %>
+        </div>  
+
+        <div class="control-group">
+          <%= f.label :password_confirmation, "Confirmation", :class => "control-label" %>
+          <%= f.password_field :password_confirmation %>
+        </div>  
+
+        <div class="control-group">  
+          <%= f.hidden_field :postsremaining, :value => sends_remaining %>
+          <%= f.hidden_field :plan_id, :class => "control-label" %>
+          <%= f.hidden_field :stripe_card_token %>

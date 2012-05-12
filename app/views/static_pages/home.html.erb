@@ -3,7 +3,7 @@
   <div class="topblock">
   <h5>Our Event Replicator sends your event to every online calendar in Orange County.</br> <span class="orange">Automatically.</span></h5>
   	            <% if signed_in? %>
-              <%= link_to "Send Event", postevent_path, 
+              <%= link_to "Send Event", newevent_path, 
                                 class: "btn btn-large btn-success btn-home" %>
             <% else %>
               <%= link_to "See Plans & Pricing", plansandpricing_path, 
@@ -31,7 +31,7 @@ to 30 Orange County event calendars.
 Send your event today.</h5></center>
             </div>
             <% if signed_in? %>
-              <%= link_to "Send Event", postevent_path, 
+              <%= link_to "Send Event", newevent_path, 
                                 class: "btn btn-large btn-success btn-home" %>
             <% else %>
               <%= link_to "See Plans & Pricing", plansandpricing_path, 

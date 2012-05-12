@@ -1,5 +1,8 @@
 <% provide(:title, "Edit user") %> 
+<% pid = @user.plan_id %>
+<% plan_object = Plan.find(pid) %>
 
+<%= pid %>
 <div class="GreenBlueBG">
 <div style="width:1200px; margin:0 auto;">
 <div class="row">
@@ -26,6 +29,28 @@
         <%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %> 
         <%= f.password_field :password_confirmation %>
       </div>  
+      <p>You are currently subscribed to the <%= plan_object.name %> plan, which gives you <%= pluralize(plan_object.kisses, 'event') %> to post this month.</p>
+      <% if pid == "1" %>
+      <p>If you'd like to send more events this month, please select from the following options:
+      <div class="control-group">
+        <%= link_to "Purchase 1 eventsend for $10", signup_path(:plan_id => 1, :upgrade => "yes"), 
+                                class: "btn btn-large btn-success btn-home", id: "nomarg" %>
+            </div>
+            <div class="control-group">
+        <%= link_to "Upgrade to unlimited events for $30/month", upgrade_path(:plan_id => 2, :upgrade => "yes"), 
+                                class: "btn btn-large btn-success btn-home", id: "nomarg" %>
+            </div>
+      <% else %>
+      <div class="control-group">
+        <%= f.check_box(:plan_id, {}, "1", "2") %>
+        <%= f.label :plan_id, "Downgrade my account to the Single Event plan at $10/month" %>
+          
+      </div>
+      <div class="control-group">
+          <%= f.check_box(:plan_id, {}, "0", plan_object ) %>
+        <%= f.label :plan_id, "Cancel my account" %>
+      </div>  
+      <% end %>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary", id: "submitacct" %>
     <% end %>

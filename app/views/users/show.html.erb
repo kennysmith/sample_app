@@ -3,7 +3,7 @@
 	<div class="span4">
 		
 			<h1>
-				<em>Note: You have <%= pluralize(@user.sends_remaining, 'send') %>  remaining this month.</em>
+				<em>Note: You have <%= pluralize(@user.postsremaining, 'send') %>  remaining this month.</em>
 				<%= @user.email %>
 			</h1>
 		</div>

@@ -11,29 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120511000834) do
+ActiveRecord::Schema.define(:version => 20120512051744) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.string   "start_date"
-    t.string   "end_date"
-    t.string   "start_time"
-    t.string   "end_time"
-    t.text     "description"
-    t.string   "location_name"
-    t.string   "location_address"
-    t.string   "location_city"
-    t.string   "location_state"
-    t.string   "location_zip"
-    t.string   "website"
-    t.string   "cost"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "startdate"
+    t.string   "starttime"
+    t.string   "enddate"
+    t.string   "endtime"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
+
+  add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
 
   create_table "plans", :force => true do |t|
     t.string   "name"
@@ -41,38 +32,6 @@ ActiveRecord::Schema.define(:version => 20120511000834) do
     t.integer  "kisses"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "sendevents", :force => true do |t|
-    t.string   "event_name"
-    t.string   "event_start_month"
-    t.string   "event_start_day"
-    t.string   "event_end_month"
-    t.string   "event_end_day"
-    t.string   "event_end_year"
-    t.string   "event_start_hour"
-    t.string   "event_start_minute"
-    t.string   "event_start_ampm"
-    t.string   "event_end_hour"
-    t.string   "event_end_minute"
-    t.string   "event_end_ampm"
-    t.text     "event_description"
-    t.string   "event_location_name"
-    t.string   "event_location_address"
-    t.string   "event_location_city"
-    t.string   "event_location_state"
-    t.string   "event_location_zip"
-    t.string   "event_website"
-    t.string   "event_cost"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
-    t.string   "event_start_year"
-    t.string   "event_start_date"
-    t.string   "event_end_date"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -96,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20120511000834) do
     t.boolean  "admin",                 :default => false
     t.string   "plan"
     t.string   "plan_id"
-    t.string   "sends_remaining"
     t.string   "stripe_customer_token"
+    t.integer  "postsremaining"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -9,6 +9,10 @@ module SessionsHelper
   	!current_user.nil?
   end
 
+def postsremaining?
+  current_user.postsremaining >= 1
+end
+
   def current_user=(user)
   	@current_user = user
   end

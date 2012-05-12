@@ -11,5 +11,10 @@ class StaticPagesController < ApplicationController
   def contact
   end
   
+  def postevent
+  	if signed_in?
+  		@event = current_user.events.build
+  	end
+  end
 
 end

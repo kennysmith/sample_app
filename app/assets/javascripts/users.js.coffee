@@ -31,3 +31,6 @@ user =
     else
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)
+
+
+      

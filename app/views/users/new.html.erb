@@ -1,57 +1,25 @@
 <% provide(:title, 'Sign up') %>
 <% plan_object = Plan.find(params[:plan_id]) %>
-<% sends_remaining = plan_object.kisses %>
+<% upgradetype = params[:upgradetype] %>
+
+<% sends_remaining = Integer(plan_object.kisses) %>
 <div id="GraydientBackground">
 <div style="width:1200px; margin:0 auto;">
 <div class="row">
   <div class="span7 offset4">
+    
     <h1>Selected Plan: <strong><%= plan_object.name %></strong></h1>
     <p>You're signing up for the <%= plan_object.name %> plan, which will allow you to send <%= plan_object.kisses %> events every month!  You will be billed <%= plan_object.price %>0 on a monthly basis.</p> 
         <%= form_for @user, :html => {:class => "form-inline"} do |f|  %>
-        <%= render 'shared/error_messages' %>
-        <h3 class="one">Your account details</h3>
-        <div class="control-group">
-          <%= f.label :name, :class => "control-label" %> 
-          <%= f.text_field :name %>
-        </div>  
-
-        <div class="control-group">
-          <%= f.label :email, :class => "control-label" %>
-          <%= f.text_field :email %>
-        </div>  
-
-        <div class="control-group">
-          <%= f.label :password, :class => "control-label" %>
-          <%= f.password_field :password %>
-        </div>  
-
-        <div class="control-group">
-          <%= f.label :password_confirmation, "Confirmation", :class => "control-label" %>
-          <%= f.password_field :password_confirmation %>
-        </div>  
-
-        <div class="control-group">  
-          <%= f.hidden_field :sends_remaining, :value => sends_remaining %>
-          <%= f.hidden_field :plan_id, :class => "control-label" %>
-          <%= f.hidden_field :stripe_card_token %>
-        </div>
+        <%= render 'shared/error_messages', object: f.object %>
+          <% if not signed_in? %>
+          <%= render 'payform' %>
+         </div>
 <br><br>
-        <h3 class="two">Your payment information</h3>
-          <div class="control-group">
-              <%= label_tag :card_number, "Card Number ", :class => "control-label" %>
-              <%= text_field_tag :card_number, nil, name: nil %>
-          </div>
-          <div class="control-group">
-              <%= label_tag :card_code, "Security Code (CVV)", :class => "control-label" %>
-              <%= text_field_tag :card_code, nil, name: nil %>
-          </div>
-          <div class="control-group">
-            <%= label_tag :card_month, "Card Expiration", :class => "control-label" %>
-            <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
-            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year" }%>
-          </div>
+  <% end %>
+          <%= render 'payform' %>
           <%= f.submit "Create my account", class: "btn btn-large btn-primary", id: "submitacct" %>
-        
+  
         <% end %>
   </div>
 </div>

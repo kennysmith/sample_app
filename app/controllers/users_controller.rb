@@ -42,6 +42,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def upgrade
+    @user = current_user
+  end
+
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."

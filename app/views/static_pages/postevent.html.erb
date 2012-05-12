@@ -1,0 +1,38 @@
+<%= provide(:title, "Submit Event") %>
+<%= current_user.name %><br />
+<%= current_user.postsremaining %> post remaining this month.
+<%= @current_user.remember_token %>
+<h1>Submit Event</h1>
+<div style="width:1200px; margin:0 auto">
+	<div class="row">
+		<div class="span6 offset3">
+			<%= form_for(@event) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="control-group">
+				    <%= f.label :name, :class=>"control-label" %><br />
+				    <%= f.text_field :name %>
+				</div>
+				<div class="control-group">
+				    <%= f.label :startdate, :class=>"control-label" %><br />
+				    <%= f.text_field :startdate %>
+				</div>
+				<div class="control-group">
+				    <%= f.label :enddate, :class=>"control-label" %><br />
+				    <%= f.text_field :enddate %>
+				</div>
+				<div class="control-group">
+				    <%= f.label :starttime, :class=>"control-label" %><br />
+				    <%= f.text_field :starttime %>
+				</div>
+				<div class="control-group">
+				    <%= f.label :endtime, :class=>"control-label" %><br />
+				    <%= f.text_field :endtime %>
+				</div>
+
+				<div class="actions">
+    				<%= f.submit "Send my Event", class: "btn btn-large btn-primary", id: "submitacct" %>
+  				</div>
+  				<% end %>
+		</div>
+	</div>
+</div>

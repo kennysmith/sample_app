@@ -25,12 +25,12 @@
 #
 class User < ActiveRecord::Base
   belongs_to :plan
-  has_many :sendevents
+  has_many :events
 
   validates_presence_of :plan_id
   validates_presence_of :email
 
-  attr_accessible :stripe_card_token, :plan_id, :email
+  attr_accessible :stripe_card_token, :plan_id, :email, :postsremaining
   attr_accessible :email, :name, :password, :password_confirmation, :sends_remaining
   has_secure_password
 
@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
-
 
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
@@ -58,9 +57,21 @@ class User < ActiveRecord::Base
       false
   end
 
+  def paid_upgrade
+    if valid?
+      upgrade = Stripe::Charge.create(
+        card: stripe_card_token,
+        customer: stripe_customer_token,
+        )
+    end
+  end
+
+
   private
 
   	def create_remember_token
   		self.remember_token = SecureRandom.urlsafe_base64
   	end
+
+
 end
