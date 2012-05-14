@@ -3,6 +3,7 @@
 <% plan_object = Plan.find(pid) %>
 <% if @user.plan_id == 1 %>
 <% @user.plan_id = "300000" %>
+<% stripecustomertoken = @user.stripe_customer_token %>
 <% end %>
 <%= pid %>
 <div class="GreenBlueBG">
@@ -10,28 +11,7 @@
 <div class="row">
   <div class="span7 offset4">
     <h1>Update your profile</h1>
-  <%= form_for @user, :html => { :class => "form-inline" } do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-     <% if pid == "2" %>
-      <p>You are currently subscribed to the <%= plan_object.name %> plan, which gives you <%= pluralize(plan_object.kisses, 'event') %> to post this month.</p>
-      
-        <%= render 'payform' %>
-        <%= f.hidden_field :plan_id, :class => "control-label" %>
-          <%= f.hidden_field :stripe_card_token %>
-          <%= f.submit "Purchase Unlimited SendEvents >", class: "btn btn-large btn-primary", id: "submitacct" %>
-      <% else %>
-      <div class="control-group">
-        <%= f.check_box(:plan_id, {}, "1", "2") %>
-        <%= f.label :plan_id, "Downgrade my account to the Single Event plan at $10/month" %>
-          
-      </div>
-      <div class="control-group">
-          <%= f.check_box(:plan_id, {}, "0", plan_object ) %>
-        <%= f.label :plan_id, "Cancel my account" %>
-      </div>  
-      <% end %>
 
-      <%= f.submit "Purchase 1 SendEvent >", class: "btn btn-large btn-primary", id: "submitacct" %>
-    <% end %>
+        
   </div>
 </div>

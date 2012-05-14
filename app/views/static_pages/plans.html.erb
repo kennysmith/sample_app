@@ -1,4 +1,5 @@
 <% provide(:title, 'Plans and Pricing') %>
+<% pid = params[:plan_id] %>
 
     <div id="price-tables">
 		<ul class="pricing-table pricing">
@@ -22,8 +23,9 @@
 					</ul>
 				</div>
 				<div style="padding-left:40px; padding-top:10px;">
-				<%= link_to "Select Package", signup_path(:plan_id => 1), 
+						<%= link_to "Select Plan", signup_path(:plan_id => 1), 
                                 class: "btn btn-large btn-success btn-home", id: "nomarg" %>
+                	
       			</div>
 				
 			</li>
@@ -48,6 +50,8 @@
 					</ul>
 				</div>
 				<div style="padding-left:40px; padding-top:10px">
+					
+					<em>
 				<%= link_to "Select Package", signup_path(:plan_id => 2), 
                                 class: "btn btn-large btn-success btn-home", id: "nomarg" %>
                 </div>

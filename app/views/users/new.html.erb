@@ -2,7 +2,7 @@
 <% plan_object = Plan.find(params[:plan_id]) %>
 <% upgradetype = params[:upgradetype] %>
 
-<% sends_remaining = Integer(plan_object.kisses) %>
+
 <div id="GraydientBackground">
 <div style="width:1200px; margin:0 auto;">
 <div class="row">
@@ -10,17 +10,7 @@
     
     <h1>Selected Plan: <strong><%= plan_object.name %></strong></h1>
     <p>You're signing up for the <%= plan_object.name %> plan, which will allow you to send <%= plan_object.kisses %> events every month!  You will be billed <%= plan_object.price %>0 on a monthly basis.</p> 
-        <%= form_for @user, :html => {:class => "form-inline"} do |f|  %>
-        <%= render 'shared/error_messages', object: f.object %>
-          <% if not signed_in? %>
-          <%= render 'payform' %>
-         </div>
-<br><br>
-  <% end %>
-          <%= render 'payform' %>
-          <%= f.submit "Create my account", class: "btn btn-large btn-primary", id: "submitacct" %>
-  
-        <% end %>
+    <%= render 'form' %>
   </div>
 </div>
 </div>

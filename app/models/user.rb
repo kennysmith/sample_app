@@ -26,21 +26,23 @@
 class User < ActiveRecord::Base
   belongs_to :plan
   has_many :events
+  has_one :subscription, :autosave => true
+
+
+  accepts_nested_attributes_for :subscription
 
   validates_presence_of :plan_id
   validates_presence_of :email
 
+  attr_accessible :subscription_attributes
   attr_accessible :stripe_card_token, :plan_id, :email, :postsremaining
-  attr_accessible :email, :name, :password, :password_confirmation, :sends_remaining
+  attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
 
-  attr_accessor :stripe_card_token
+  attr_accessor :stripe_card_token, :subscription_attributes
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
-
-  validates :password, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
 
   def save_with_payment
     if valid?
