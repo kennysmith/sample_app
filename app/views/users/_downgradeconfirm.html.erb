@@ -1,0 +1,7 @@
+<%= form_for @exusercomments, :html => { :class => "form-inline" } do |f| %>
+
+	<%= f.textarea :comment %>
+
+	<%= f.submit "Cancel my account", class: "btn btn-large btn-primary", id: "submitacct" %>
+
+<% end %>
