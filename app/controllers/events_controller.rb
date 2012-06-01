@@ -3,12 +3,14 @@ class EventsController < ApplicationController
 
 	def create
 		@event = current_user.events.build(params[:event])
+		@subscription = @current_user.subscriptions.first
 		current = @current_user
-		remaining = current.postsremaining
-		newremaining = remaining - 1
-		if current.postsremaining >= 1
+		remaining = @subscription.eventsremaining
+		newremaining = (remaining - 1).to_i
+		if remaining >= 1
 			if @event.save
-				current.update_attribute(:postsremaining, newremaining)
+				@subscription.eventsremaining = newremaining
+				@subscription.save
 				sign_in current
 				flash[:success] = "Event has been sent!"
 				redirect_to root_path

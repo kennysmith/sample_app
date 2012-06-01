@@ -6,12 +6,15 @@ class UsersController < ApplicationController
   before_filter :has_plan, only: :new
 
 
+
+
   def index
     @users = User.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    @subscription = @user.subscriptions.first
   end
 
   def new
@@ -23,13 +26,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      
+    if @user.save_with_payment
       sign_in @user
       flash[:success] = "Welcome to the SendEvent!"
       redirect_to @user
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -94,13 +96,17 @@ class UsersController < ApplicationController
   end
 
   def has_plan
+<<<<<<< HEAD
     redirect_to (plansandpricing_path) unless params[:plan_id] != nil
 
+=======
+    if params[:plan_id] = nil  
+      redirect_to plansandpricing_path
+    end
+>>>>>>> mostuff
   end
 
   private
-
-
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
