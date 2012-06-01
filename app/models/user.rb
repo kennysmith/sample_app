@@ -24,19 +24,22 @@
 #  updated_at :datetime        not null
 #
 class User < ActiveRecord::Base
+    
+
+  attr_accessible :subscriptions_attributes, :plan
+  attr_accessible :stripe_card_token, :plan_id, :email, :postsremaining
+  attr_accessible :email, :name, :password, :password_confirmation
+
   belongs_to :plan
   has_many :events
-  has_one :subscription, :autosave => true
-
-
-  accepts_nested_attributes_for :subscription
+  has_many :subscriptions, :autosave => true
+  
+  accepts_nested_attributes_for :subscriptions
 
   validates_presence_of :plan_id
   validates_presence_of :email
 
-  attr_accessible :subscription_attributes
-  attr_accessible :stripe_card_token, :plan_id, :email, :postsremaining
-  attr_accessible :email, :name, :password, :password_confirmation
+
   has_secure_password
 
   attr_accessor :stripe_card_token, :subscription_attributes

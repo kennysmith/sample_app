@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new
     plan = Plan.find(params[:plan_id])
     @user = plan.users.build
-    @user.build_subscription
+
   end
 
   def create

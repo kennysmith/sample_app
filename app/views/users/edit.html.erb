@@ -36,7 +36,7 @@
       <% if pid == "1" %>
       <p>If you'd like to send more events this month, please select from the following options:
       <div class="control-group">
-        <%= link_to "Upgrade my plan ->", plans_path, 
+        <%= link_to "Upgrade my plan ->", plansandpricing_path(:plan_id => pid), 
                                 class: "btn btn-large btn-success btn-home", id: "nomarg" %>
             </div>
       <% else %>
