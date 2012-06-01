@@ -3,6 +3,8 @@ class UsersController < ApplicationController
                 only: [:index, :edit, :update, :destroy, :following, :followers]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
+  before_filter :has_plan, only: :new
+
 
   def index
     @users = User.paginate(page: params[:page])
@@ -91,7 +93,10 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def has_plan
+    redirect_to (plansandpricing_path) unless params[:plan_id] != nil
 
+  end
 
   private
 

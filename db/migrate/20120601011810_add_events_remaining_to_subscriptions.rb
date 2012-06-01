@@ -4,6 +4,6 @@ class AddEventsRemainingToSubscriptions < ActiveRecord::Migration
   	remove_column :users, :sends_remaining
   	remove_column :users, :admin
   	remove_column :users, :plan
-  	remove_column :users, :posts_remaining
+  	remove_column :users, :postsremaining
   end
 end
