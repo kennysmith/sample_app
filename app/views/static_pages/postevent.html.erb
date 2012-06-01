@@ -10,23 +10,23 @@
 				<%= render 'shared/error_messages', object: f.object %>
 				<div class="control-group">
 				    <%= f.label :name, :class=>"control-label" %><br />
-				    <%= f.text_field :name %>
+				    <%= f.text_field :name, :value => "event name" %>
 				</div>
 				<div class="control-group">
 				    <%= f.label :startdate, :class=>"control-label" %><br />
-				    <%= f.text_field :startdate %>
+				    <%= f.text_field :startdate, :value => "startdate" %>
 				</div>
 				<div class="control-group">
 				    <%= f.label :enddate, :class=>"control-label" %><br />
-				    <%= f.text_field :enddate %>
+				    <%= f.text_field :enddate, :value => "end date" %>
 				</div>
 				<div class="control-group">
 				    <%= f.label :starttime, :class=>"control-label" %><br />
-				    <%= f.text_field :starttime %>
+				    <%= f.text_field :starttime, :value => "starttime" %>
 				</div>
 				<div class="control-group">
 				    <%= f.label :endtime, :class=>"control-label" %><br />
-				    <%= f.text_field :endtime %>
+				    <%= f.text_field :endtime, :value => "endtime" %>
 				</div>
 
 				<div class="actions">

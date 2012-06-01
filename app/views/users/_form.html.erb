@@ -1,4 +1,4 @@
-<% plid = Plan.find(params[:plan_id]) %>
+
 <% downgrade = params[:downgrade] %>
 
 
@@ -30,7 +30,7 @@
          </div>
           <% end %>
           <br><br>
-          
+          <%= f.hidden_field :plan_id, :value => params[:plan_id] %>
           <%= f.hidden_field :stripe_card_token %>
            <h3 class="two">Your payment information</h3>
           <div class="control-group">

@@ -4,12 +4,15 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
 
+
+
   def index
     @users = User.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    @subscription = @user.subscriptions.first
   end
 
   def new
@@ -21,13 +24,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      
+    if @user.save_with_payment
       sign_in @user
       flash[:success] = "Welcome to the SendEvent!"
       redirect_to @user
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -91,11 +93,13 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-
+  def has_plan
+    if params[:plan_id] = nil  
+      redirect_to plansandpricing_path
+    end
+  end
 
   private
-
-
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
