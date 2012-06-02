@@ -1,4 +1,3 @@
-
 <% downgrade = params[:downgrade] %>
 
 
@@ -30,11 +29,7 @@
          </div>
           <% end %>
           <br><br>
-<<<<<<< HEAD
-          <%= f.hidden_field :plan_id, :value => "1" %>
-=======
           <%= f.hidden_field :plan_id, :value => params[:plan_id] %>
->>>>>>> mostuff
           <%= f.hidden_field :stripe_card_token %>
            <h3 class="two">Your payment information</h3>
           <div class="control-group">

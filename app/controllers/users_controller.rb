@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    plan = Plan.find(params[:plan_id])
+    planid = params[:plan_id]
+    plan = Plan.find(planid)
     @user = plan.users.build
 
   end
@@ -96,14 +97,9 @@ class UsersController < ApplicationController
   end
 
   def has_plan
-<<<<<<< HEAD
-    redirect_to (plansandpricing_path) unless params[:plan_id] != nil
-
-=======
-    if params[:plan_id] = nil  
+    if params[:plan_id].blank? 
       redirect_to plansandpricing_path
     end
->>>>>>> mostuff
   end
 
   private
