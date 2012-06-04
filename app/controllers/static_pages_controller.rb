@@ -17,4 +17,8 @@ class StaticPagesController < ApplicationController
   	end
   end
 
+  def plans
+    
+  end
+
 end

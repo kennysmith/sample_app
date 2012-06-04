@@ -2,16 +2,13 @@
 
   get "ex_user_comments/new"
 
-  resources :users do
-    get :cancel
-    member do
-      get :following, :followers
-    end
-  end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :events, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]    
   resources :plans
+  resources :subscriptions
+  resources :users
 
 
   root to: 'static_pages#home'
@@ -28,7 +25,7 @@
   match '/newevent', to: 'static_pages#postevent'
   match '/events', to: 'static_pages#postevent'
   match '/downgrade_confirm', to: 'users#downgrade_confirm'
-  match '/upgrade', to: 'users#edit'
+  match '/upgrade', to: 'subscriptions#edit'
 
 
 

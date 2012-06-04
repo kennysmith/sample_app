@@ -22,11 +22,17 @@
 						<li class="no-icon"></li>
 					</ul>
 				</div>
+				<% if pid == 1 %>
+				<div style="padding-left:40px; padding-top:10px;">
+					<em>Current Plan</em>
+				</div>
+				<% else %>
 				<div style="padding-left:40px; padding-top:10px;">
                 	  			<%= link_to "Select Plan", signup_path(:plan_id => 1), 
                                		class: "btn btn-large btn-success btn-home", id: "nomarg" %>
 
       			</div>
+      			<% end %>
 				
 			</li>
 			
