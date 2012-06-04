@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 				render 'static_pages/home'
 			end
 		else
-			redirect_to edit_subscription_path, notice: "Woops! It looks like you've run out of event postings this month.  To continue sending your event, you must purchase one of the options below:"
+			redirect_to upgrade_path, notice: "Woops! It looks like you've run out of event postings this month.  To continue sending your event, you must purchase one of the options below:"
 		end
 	end
 

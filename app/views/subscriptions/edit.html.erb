@@ -1,14 +1,9 @@
-<% provide(:title, 'Sign up') %>
-<% plan_object = Plan.find(params[:plan_id]) %>
-<% upgradetype = params[:upgradetype] %>
-
-
 <div id="GraydientBackground">
 <div style="width:1200px; margin:0 auto;">
 <div class="row">
   <div class="span7 offset4">
 	<h1>Change Subscription</h1>    
-    <p>Upgrade your plan to send unlimited events. You will be billed $20 now and then $30 every month until you cancel.</p>
+    <p>Upgrade your plan to send unlimited events. You will be billed $30 now and then $30 every month until you cancel. </p>
     
     <%= render 'form' %>
   </div>

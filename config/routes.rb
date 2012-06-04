@@ -27,9 +27,8 @@
   match '/plansandpricing', to: 'static_pages#plans'
   match '/newevent', to: 'static_pages#postevent'
   match '/events', to: 'static_pages#postevent'
-  match '/upgrade', to: 'users#upgrade'
   match '/downgrade_confirm', to: 'users#downgrade_confirm'
-
+  match '/upgrade', to: 'users#edit'
 
 
 

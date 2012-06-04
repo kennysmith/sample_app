@@ -40,12 +40,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    userparams = :plan_id
 
-    if userparams == 0
-      @user = current_user
-      cancel @user 
-    end
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
       sign_in @user
@@ -104,7 +99,7 @@ class UsersController < ApplicationController
 
   private
     def correct_user
-      @user = User.find(params[:id])
+      @user = current_user
       redirect_to(root_path) unless current_user?(@user)
     end
 

@@ -29,23 +29,18 @@
         <%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %> 
         <%= f.password_field :password_confirmation %>
       </div>  
-    <%= f.submit "Save changes", class: "btn btn-large btn-primary", id: "submitacct" %>
+    
   <% end %>
       <h3 class="two">Plan Info</h3>
       <p>You are currently subscribed to the <%= plan_object.name %> plan, which gives you <%= pluralize(plan_object.kisses, 'event') %> to post this month.</p>
-      <% if pid == "1" %>
       <p>If you'd like to send more events this month, please select from the following options:
-      <div class="control-group">
+      
+          <div class="control-group">
+            <%= link_to_add_fields "Subscriptions", f, :subscriptions %>
+          </div>
         <%= link_to "Upgrade my plan ->", plansandpricing_path(:plan_id => pid), 
                                 class: "btn btn-large btn-success btn-home", id: "nomarg" %>
-            </div>
-      <% else %>
-      <div class="control-group">
-        <%= link_to "Downgrade my plan ->", downgrade_confirm_path, 
-                                class: "btn btn-large btn-danger btn-home", id: "nomarg" %>
-      </div>
-      <% end %>
-      
+      </div>      
       
 
   </div>
