@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120601011810) do
+ActiveRecord::Schema.define(:version => 20120512051744) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -26,15 +26,6 @@ ActiveRecord::Schema.define(:version => 20120601011810) do
 
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
 
-  create_table "ex_user_comments", :force => true do |t|
-    t.string   "comment"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "ex_user_comments", ["user_id"], :name => "index_ex_user_comments_on_user_id"
-
   create_table "plans", :force => true do |t|
     t.string   "name"
     t.decimal  "price"
@@ -43,24 +34,15 @@ ActiveRecord::Schema.define(:version => 20120601011810) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "subscriptions", :force => true do |t|
-    t.string   "plan_id"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "status"
-    t.integer  "eventsremaining"
-  end
-
-  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
-
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.boolean  "admin",                 :default => false
+    t.string   "plan"
     t.string   "plan_id"
     t.string   "stripe_customer_token"
     t.integer  "postsremaining"
