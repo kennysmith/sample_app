@@ -1,18 +1,21 @@
-  SampleApp::Application.routes.draw do
+SampleApp::Application.routes.draw do
 
   post 'stripe/webhook'
 
-  resources :payments
+  resources :payments, only: [:edit, :update]
 
   get "ex_user_comments/new"
-
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :events, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]    
   resources :plans
   resources :subscriptions
-  resources :users
+  resources :users do
+    member do
+      get :cancel
+    end
+  end
 
 
   root to: 'static_pages#home'
@@ -31,7 +34,8 @@
   match '/downgrade_confirm', to: 'users#downgrade_confirm'
   match '/upgrade', to: 'subscriptions#edit'
 
-
+  post 'subscriptions/upgrade'
+  post 'subscriptions/downgrade'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

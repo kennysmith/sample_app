@@ -13,8 +13,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @plan = @user.plan
-    #@subscription = @user.subscriptions.first
+    @payment = @user.payments.first
   end
 
   def new
@@ -88,14 +87,16 @@ class UsersController < ApplicationController
   end
 
   def cancel
-    @user = current_user
     user = current_user
-    cu = Stripe::Customer.retrieve(user.stripe_customer_token)
-    cu.cancel_subscription
+    payment = user.payments.first
+    payment.customer.cancel_subscription
+    payment.status = "canceled"
+    payment.eventsremaining = 0
+    payment.save
     user.postsremaining = 0
     user.plan_id = 0
     user.save
-    redirect_to users_path
+    redirect_to root_path
   end
 
   def has_plan

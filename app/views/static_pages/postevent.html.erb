@@ -3,36 +3,51 @@
 <%= current_user.postsremaining %> post remaining this month.
 <%= @current_user.remember_token %>
 <h1>Submit Event</h1>
-<div style="width:1200px; margin:0 auto">
-	<div class="row">
-		<div class="span6 offset3">
-			<%= form_for(@event) do |f| %>
-				<%= render 'shared/error_messages', object: f.object %>
-				<div class="control-group">
-				    <%= f.label :name, :class=>"control-label" %><br />
-				    <%= f.text_field :name, :value => "event name" %>
-				</div>
-				<div class="control-group">
-				    <%= f.label :startdate, :class=>"control-label" %><br />
-				    <%= f.text_field :startdate, :value => "startdate" %>
-				</div>
-				<div class="control-group">
-				    <%= f.label :enddate, :class=>"control-label" %><br />
-				    <%= f.text_field :enddate, :value => "end date" %>
-				</div>
-				<div class="control-group">
-				    <%= f.label :starttime, :class=>"control-label" %><br />
-				    <%= f.text_field :starttime, :value => "starttime" %>
-				</div>
-				<div class="control-group">
-				    <%= f.label :endtime, :class=>"control-label" %><br />
-				    <%= f.text_field :endtime, :value => "endtime" %>
-				</div>
+<% if @payment.status == "active" %>
+  <div style="width:1200px; margin:0 auto">
+    <div class="row">
+      <div class="span6 offset3">
+        <%= form_for(@event) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="control-group">
+            <%= f.label :name, :class=>"control-label" %><br />
+            <%= f.text_field :name, :value => "event name" %>
+          </div>
+          <div class="control-group">
+            <%= f.label :startdate, :class=>"control-label" %><br />
+            <%= f.text_field :startdate, :value => "startdate" %>
+          </div>
+          <div class="control-group">
+            <%= f.label :enddate, :class=>"control-label" %><br />
+            <%= f.text_field :enddate, :value => "end date" %>
+          </div>
+          <div class="control-group">
+            <%= f.label :starttime, :class=>"control-label" %><br />
+            <%= f.text_field :starttime, :value => "starttime" %>
+          </div>
+          <div class="control-group">
+            <%= f.label :endtime, :class=>"control-label" %><br />
+            <%= f.text_field :endtime, :value => "endtime" %>
+          </div>
 
-				<div class="actions">
-    				<%= f.submit "Send my Event", class: "btn btn-large btn-primary", id: "submitacct" %>
-  				</div>
-  				<% end %>
-		</div>
-	</div>
-</div>
+          <div class="actions">
+            <%= f.submit "Send my Event", class: "btn btn-large btn-primary", id: "submitacct" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% elsif @payment.status == "inactive" %>
+    <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
+        Your Payment is Failed. Please Update billing information.<br/>
+        <%= link_to "Update Billing Info", edit_payment_path(current_user.payments.first) %>
+    </div>
+  <% elsif @payment.status == "notverified" %>
+    <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
+         Your payment is not verified yet. Please wait few moments.
+    </div>
+  <% elsif @payment.status == "canceled" %>
+    <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
+         Your subscription is canceled.
+    </div>
+  <% end %>

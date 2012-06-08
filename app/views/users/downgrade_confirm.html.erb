@@ -4,14 +4,14 @@
   <div class="span7 offset4">
     <h1>Cancel Plan?</h1>
     <p>We're sorry to see you go!  Please let us know if there's anything we can do to bring you back in the future.</p>
-    <%= form_for @user, :html => {:class => "form-inline"} do |f|  %>
+    <%= form_tag subscriptions_downgrade_path, :html => {:class => "form-inline"}  %>
 
-    	<%= f.hidden_field :plan_id, :value => 0 %>
+    	<%= hidden_field_tag :plan_id, :value => 0 %>
 
-    	<%= f.submit "Downgrade my plan", class: "btn btn-large btn-danger", id: "submitacct" %>
-    <% end %>
+    	<%= submit_tag "Downgrade my plan", class: "btn btn-large btn-danger", id: "submitacct" %>
+   
     or
-    <%= link_to "Cancel account", user_path(@user, :user => { :plan_id => 0 }), :method => :put, :confirm => "Are you Sure" %>
+    <%= link_to "Cancel account", cancel_user_path(@user, :user => { :plan_id => 0 }), :confirm => "Are you Sure" %>
 
   </div>
   </div>

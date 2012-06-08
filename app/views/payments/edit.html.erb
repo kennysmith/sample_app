@@ -1,6 +1,39 @@
-<h1>Editing payment</h1>
+<div id="GraydientBackground">
+  <div style="width:1200px; margin:0 auto;">
+    <div class="row">
+      <div class="span7 offset4">
+        <%= form_for @payment, :html => {:class => "form-inline"} do |f|  %>
+          <%= f.hidden_field :stripe_token %>
+          <%= f.hidden_field :last_4_digits %>
+          <%= f.hidden_field :card_exp_month %>
+          <%= f.hidden_field :card_exp_year %>
+          <%= f.hidden_field :card_type %>
 
-<%= render 'form' %>
+          <h3 class="one">Your payment information</h3>
+          <div id="credit-card">
+            <div id="credit-card-errors" style="display: none">
+              <div id="stripe-error-message" class="alert-message block-message error"></div>
+            </div>
+            <div class="control-group">
+              <%= label_tag :credit_card_number, "Card Number ", :class => "control-label" %>
+              <%= text_field_tag :credit_card_number, params[:credit_card_number], :value => "4242424242424242", :disabled => true %>
+            </div>
+            <div class="control-group">
+              <%= label_tag :cvv, "Security Code (CVV)", :class => "control-label" %>
+              <%= text_field_tag :cvv, params[:cvv], :value => "123", :disabled => true %>
+            </div>
+            <div class="control-group">
+              <%= label_tag :expiry_date, "Card Expiration", :class => "control-label" %>
+              <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25, :disabled => true}, {:class => 'small'} %>
+            </div>
 
-<%= link_to 'Show', @payment %> |
-<%= link_to 'Back', payments_path %>
+            <%= f.submit "Create my account", class: "btn btn-large btn-primary", id: "submitacct" %>
+              <div class="processing">
+                <%= image_tag('white_spinner.gif') %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

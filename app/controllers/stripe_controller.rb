@@ -7,6 +7,7 @@ class StripeController < ApplicationController
         if data_json["data"]["object"]["description"].include? "Single Use"
           @payment = Payment.find_by_stripe_id(data_json['data']['object']['customer'])
           @user = @payment.user if @payment.present?
+          @payment.handle_succeeded_payment! if @user.present?
           NotificationMailer.single_use_charge_succeeded(data_json["data"]["object"], @user).deliver if @user.present?
         end
       end
@@ -17,7 +18,7 @@ class StripeController < ApplicationController
         if data_json["data"]["object"]["description"].include? "Single Use"
           @payment = Payment.find_by_stripe_id(data_json['data']['object']['customer'])
           @user = @payment.user if @payment.present?
-          @payment.handle_failed_payment!
+          @payment.handle_failed_payment! if @user.present?
           NotificationMailer.single_use_charge_failed(data_json["data"]["object"], @user).deliver if @user.present?
         end
       end
@@ -28,13 +29,14 @@ class StripeController < ApplicationController
       @payment = Payment.find_by_stripe_id(data_json['data']['object']['customer'])
       @user = @payment.user if @payment.present?
       @plan = @invoice['data']['object']['lines']['subscriptions'].first['plan']
+      @payment.handle_succeeded_payment! if @user.present?
       NotificationMailer.recurring_charge_succeeded(@invoice, @user, @plan).deliver if @user.present?
     end
 
     if data_json["type"] == "invoice.payment_failed"
       @payment = Payment.find_by_stripe_id(data_json['data']['object']['customer'])
       @user = @payment.user if @payment.present?
-      @payment.handle_failed_payment!
+      @payment.handle_failed_payment! if @user.present?
       NotificationMailer.recurring_charge_failed(@user, data_json, @payment).deliver if @user.present?
     end
 

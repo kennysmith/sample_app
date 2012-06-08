@@ -1,10 +1,10 @@
-<%= form_for @subscription, :html => {:class => "form-inline"} do |f|  %>
+<%= form_tag subscriptions_upgrade_path, :html => {:class => "form-inline"}, :method => 'post'  %>
           <h3 class="two">Your payment information</h3>
           <div class="control-group">
 
           </div>
   
   <div class="actions">
-    <%= f.submit "Upgrade my Account", class: "btn btn-large btn-primary", id: "submitacct" %>
+    <%= submit_tag "Upgrade my Account", class: "btn btn-large btn-primary", id: "submitacct" %>
   </div>
-<% end %>
+
