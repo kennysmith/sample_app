@@ -13,10 +13,10 @@ $(function() {
         $("#credit-card input, #credit-card select").attr("name", "");
         $("#credit-card-errors").hide();
 
-//        if (!$("#credit-card").is(":visible")) {
-//            $("#credit-card input, #credit-card select").attr("disabled", true);
-//            return true;
-//        }
+        if (!$("#credit-card").is(":visible")) {
+            $("#credit-card input, #credit-card select").attr("disabled", true);
+            return true;
+        }
         
 
         var exp_month = $("#_expiry_date_2i").val();

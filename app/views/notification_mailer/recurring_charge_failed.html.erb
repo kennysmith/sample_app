@@ -1,0 +1,15 @@
+<% @current_charges = @invoice['data']['object']['amount'].to_f/100.0 %>
+<% @card_number = "XXXX-XXXX-XXXX-#{@user.payments.first.last_4_digits}" %>
+
+Hi <%= @user.name %>, <br/>
+<br/>
+Your recurring charge $<%= @current_charges %> for <%= @user.plan.name %> is failed.<br/>
+<br/>
+
+Your Card Number: <%= @card_number %><br/>
+Card Expiry Date: <%= @payment.card_expiry_date %><br/>
+<%= "Your card is expired." if @payment.card_expiry_date < Date.today %><br/><br/>
+Please update your billing information.<br/>
+
+<br/><br/>
+Thank You

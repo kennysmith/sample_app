@@ -1,5 +1,7 @@
   SampleApp::Application.routes.draw do
 
+  post 'stripe/webhook'
+
   resources :payments
 
   get "ex_user_comments/new"

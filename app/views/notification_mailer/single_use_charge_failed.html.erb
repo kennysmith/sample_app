@@ -1,0 +1,9 @@
+Name: <%= @user.name  %><br/>
+Email: <%= @user.email  %><br/><br/>
+
+Description: <%= @charge["description"] %><br/>
+Amount: $<%= (@charge['amount']/100).round(2) %><br/>
+Paid: <%= @charge['paid'] %>
+
+<br/><br/>
+Thank You

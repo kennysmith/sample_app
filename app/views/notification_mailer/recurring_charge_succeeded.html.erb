@@ -1,0 +1,32 @@
+<% @created = Time.at(@invoice['created']) %>
+<% @period = @invoice['data']['object']['lines']['subscriptions'].first['period'] %>
+<%  @billing_period = "#{Time.at(@period['start']).strftime("%m/%d/%Y")} - #{Time.at(@period['end']).strftime("%m/%d/%Y")}" %>
+
+<% @starting_balance = @invoice['data']['object']['starting_balance'].to_f/100.0 %>
+<% if @starting_balance == 0.0 && (defined?(@invoice['data']['object']['lines']['invoiceitems'].first['amount'])).present? %>
+  <% @starting_balance = @invoice['data']['object']['lines']['invoiceitems'].first['amount'] %>
+<% end %>
+<% @current_charges = @invoice['data']['object']['amount_due'].to_f/100.0 %>
+
+<% @ending_balance = @invoice['data']['object']['ending_balance'].to_f/100.0 %>
+<% @date = Time.at(@invoice['data']['object']['date']) %>
+
+<% @paid = @invoice['data']['object']['paid'] %>
+
+
+
+
+Name: <%= @user.name  %><br/>
+Email: <%= @user.email  %><br/><br/>
+
+Created: <%= @created %><br/>
+Billing Period: <%= @billing_period %><br/><br/>
+Starting Balance: <%= @starting_balance %><br/>
+Current Charges: <%= @current_charges %><br/>
+Ending Balance: <%= @ending_balance %><br/><br/>
+
+Paid: <%= @paid %><br/>
+Date: <%= @date %>
+
+<br/><br/>
+Thank You

@@ -58,4 +58,8 @@ class Payment < ActiveRecord::Base
     end
   end
 
+  def handle_failed_payment!
+     
+  end
+
 end
