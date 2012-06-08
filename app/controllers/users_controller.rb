@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, 
-                only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
   before_filter :has_plan, only: :new
@@ -14,26 +13,35 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @subscription = @user.subscriptions.first
+    @plan = @user.plan
+    #@subscription = @user.subscriptions.first
   end
 
   def new
     @user = User.new
-    planid = params[:plan_id]
-    plan = Plan.find(planid)
-    @user = plan.users.build
+    plan_id = params[:plan_id] || params[:user][:plan_id]
+    @plan = Plan.find(plan_id)
+    @user = @plan.users.build
 
   end
 
   def create
+    @plan = Plan.find(params[:user][:plan_id])
+    
     @user = User.new(params[:user])
-    if @user.save_with_payment
+    @user.payments.build(params[:payment])
+    
+    if @user.save
       sign_in @user
       flash[:success] = "Welcome to the SendEvent!"
       redirect_to @user
     else
       render :new
     end
+  rescue Stripe::StripeError => e
+    logger.error e.message
+    @payment.errors.add :base, e.message
+    render :action => :new
   end
 
   def edit
@@ -97,12 +105,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def correct_user
-      @user = current_user
-      redirect_to(root_path) unless current_user?(@user)
-    end
+  def correct_user
+    @user = current_user
+    redirect_to(root_path) unless current_user?(@user)
+  end
 
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
-    end
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
+  end
 end

@@ -583,3 +583,25 @@ img { border: 0; }
   background: none !important;
 }
 
+#credit-card{
+  position: relative;
+}
+#credit-card .small{
+  width: 159px;
+}
+#credit-card .processing{
+  position: absolute;
+  bottom: 5px;
+  left: 300px;
+  display: none;
+}
+
+#credit-card #credit-card-errors{
+  border: 1px solid #3366AA;
+  padding: 5px;
+  position: absolute;
+  right: -180px;
+  top: 0;
+  width: 240px;
+  color: white;
+}

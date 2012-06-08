@@ -2,28 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-jQuery ->
-  user.setupForm()
-
-user =
-  setupForm: ->
-    $('#cancel_user').click ->
-  
-  processCard: ->
-    card =
-      {number: $('#card_number').val(),
-      cvc: $('#card_code').val(),
-      expMonth: $('#card_month').val(),
-      expYear: $('#card_year').val()}
-    Stripe.createToken(card, user.handleStripeResponse)
-  
-  handleStripeResponse: (status, response) ->
-    if status == 200
-      $('#user_stripe_card_token').val(response.id)
-      $('#new_user')[0].submit()
-    else
-      $('#stripe_error').text(response.error.message)
-      $('input[type=submit]').attr('disabled', false)
-
 
       

@@ -1,5 +1,4 @@
 <% provide(:title, 'Sign up') %>
-<% plan_object = Plan.find(params[:plan_id]) %>
 <% upgradetype = params[:upgradetype] %>
 
 
@@ -8,8 +7,8 @@
 <div class="row">
   <div class="span7 offset4">
     
-    <h1>Selected Plan: <strong><%= plan_object.name %></strong></h1>
-    <p>You're signing up for the <%= plan_object.name %> plan, which will allow you to send <%= plan_object.kisses %> events every month!  You will be billed <%= plan_object.price %>0 on a monthly basis.</p> 
+    <h1>Selected Plan: <strong><%= @plan.name %></strong></h1>
+    <p>You're signing up for the <%= @plan.name %> plan, which will allow you to send <%= @plan.kisses %> events every month!  You will be billed $<%= @plan.price %>0 on a monthly basis.</p>
     <%= render 'form' %>
   </div>
 </div>

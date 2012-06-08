@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512051744) do
+ActiveRecord::Schema.define(:version => 20120608164421) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(:version => 20120512051744) do
   end
 
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
+
+  create_table "payments", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "stripe_id"
+    t.string   "last_4_digits"
+    t.date     "card_expiry_date"
+    t.string   "card_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "charge_id"
+  end
 
   create_table "plans", :force => true do |t|
     t.string   "name"

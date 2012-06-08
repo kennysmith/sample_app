@@ -1,5 +1,7 @@
   SampleApp::Application.routes.draw do
 
+  resources :payments
+
   get "ex_user_comments/new"
 
 

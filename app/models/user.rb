@@ -32,9 +32,10 @@ class User < ActiveRecord::Base
 
   belongs_to :plan
   has_many :events
-  has_many :subscriptions, :autosave => true
+  has_many :payments
+  #has_many :subscriptions, :autosave => true
   
-  accepts_nested_attributes_for :subscriptions
+  #accepts_nested_attributes_for :subscriptions
 
   validates_presence_of :plan_id
   validates_presence_of :email
@@ -42,34 +43,34 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  attr_accessor :stripe_card_token, :subscription_attributes
+  #attr_accessor :stripe_card_token, :subscription_attributes
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
-  def save_with_payment
-    if valid?
-      customer = Stripe::Customer.create(
-        email:email, 
-        plan: plan_id,
-        card: stripe_card_token )
-      self.stripe_customer_token = customer.id
-      save!
-    end
-    rescue Stripe::InvalidRequestError => e
-      logger.error "Stripe error while creating customer: #{e.message}"
-      errors.add :base, "There was a problem with your credit card."
-      false
-  end
-
-  def paid_upgrade
-    if valid?
-      upgrade = Stripe::Charge.create(
-        card: stripe_card_token,
-        customer: stripe_customer_token,
-        )
-    end
-  end
+#  def save_with_payment
+#    if valid?
+#      customer = Stripe::Customer.create(
+#        email:email,
+#        plan: plan_id,
+#        card: stripe_card_token )
+#      self.stripe_customer_token = customer.id
+#      save!
+#    end
+#    rescue Stripe::InvalidRequestError => e
+#      logger.error "Stripe error while creating customer: #{e.message}"
+#      errors.add :base, "There was a problem with your credit card."
+#      false
+#  end
+#
+#  def paid_upgrade
+#    if valid?
+#      upgrade = Stripe::Charge.create(
+#        card: stripe_card_token,
+#        customer: stripe_customer_token,
+#        )
+#    end
+#  end
 
 
   private
