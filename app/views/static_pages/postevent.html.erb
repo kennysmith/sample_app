@@ -1,6 +1,6 @@
 <%= provide(:title, "Submit Event") %>
 <%= current_user.name %><br />
-<%= current_user.postsremaining %> post remaining this month.
+<%= @subscription.eventsremaining %> post remaining this month.
 <%= @current_user.remember_token %>
 <h1>Submit Event</h1>
 <% if @subscription.status == "active" %>

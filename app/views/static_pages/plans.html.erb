@@ -1,79 +1,78 @@
 <% provide(:title, 'Plans and Pricing') %>
 <% pid = params[:plan_id] %>
 
-    <div id="price-tables">
-		<ul class="pricing-table pricing">
-			    <h1>Select a Package</h1>
-			<li class="pt-column prices">
-				<div class="pt-package-1">
-					<div class="pt-header" style="background-color: ;" >
-						<h2>Single</h2>
-						<h3>
-							<span class="pt-currency">$</span>
-							<span class="pt-amount">10</span>
-							<span class="pt-terms"></span>
-						</h3>
-					</div>
-					<ul class="pt-feature-list pricing">
-						<li>Send 1 Event</li>
-						<li>Save time</li>
-						<li>Spread Awareness</li>
-						
-						<li class="no-icon"></li>
-					</ul>
-				</div>
-				<% if pid == 1 %>
-				<div style="padding-left:40px; padding-top:10px;">
-					<em>Current Plan</em>
-				</div>
-				<% else %>
-				<div style="padding-left:40px; padding-top:10px;">
-                	  			<%= link_to "Select Plan", signup_path(:plan_id => 1), 
-                               		class: "btn btn-large btn-success btn-home", id: "nomarg" %>
+<div id="price-tables">
+  <ul class="pricing-table pricing">
+    <h1>Select a Package</h1>
+    <li class="pt-column prices">
+      <div class="pt-package-1">
+        <div class="pt-header" style="" >
+          <h2>Single</h2>
+          <h3>
+            <span class="pt-currency">$</span>
+            <span class="pt-amount">10</span>
+            <span class="pt-terms"></span>
+          </h3>
+        </div>
+        <ul class="pt-feature-list pricing">
+          <li>Send 1 Event</li>
+          <li>Save time</li>
+          <li>Spread Awareness</li>
 
-      			</div>
-      			<% end %>
-				
-			</li>
-			
-			<li class="pt-column prices">
-				<div class="pt-package-2">
-					<div class="pt-header" style="background-color:'+secondPackageColor+';" >
-						<h2>Unlimited</h2>
-						<h3>
-							<span class="pt-currency">$</span>
-							<span class="pt-amount">30</span>
-							<span class="pt-terms">/mo</span>
-						</h3>
-					</div>
+          <li class="no-icon"></li>
+        </ul>
+      </div>
+      <% if pid == 1 %>
+        <div style="padding-left:40px; padding-top:10px;">
+          <em>Current Plan</em>
+        </div>
+      <% else %>
+        <div style="padding-left:40px; padding-top:10px;">
+          <%= link_to "Select Plan", signup_path(:plan_id => 1),
+            :class => "btn btn-large btn-success btn-home", :id => "nomarg" %>
+
+          </div>
+        <% end %>
+
+      </li>
+
+      <li class="pt-column prices">
+        <div class="pt-package-2">
+          <div class="pt-header" style="background-color: #7097C3" >
+            <h2>Unlimited</h2>
+            <h3>
+              <span class="pt-currency">$</span>
+              <span class="pt-amount">30</span>
+              <span class="pt-terms">/mo</span>
+            </h3>
+          </div>
 
 
-					<ul class="pt-feature-list pricing">
-						<li>Send Unlimited Events</li>
-						<li>Save time</li>
-						<li>Spread Awareness</li>
-						<li class="no-icon"></li>
-					</ul>
-				</div>
-				<div style="padding-left:40px; padding-top:10px">
-						<% if signed_in? %>
-						<% if pid = 1 %>
-							<%= link_to "Upgrade Plan", signup_path(:plan_id => 2, :downgrade => "no"), 
-                               		class: "btn btn-large btn-success btn-home", id: "nomarg" %>
-						<% else %>
-							<% if pid = 2 %>
-						  		<em>Current Plan</em>
-                       		<% else %>
-                	  			<%= link_to "Select Plan", signup_path(:plan_id => 2), 
-                               		class: "btn btn-large btn-success btn-home", id: "nomarg" %>
-                            <% end %>
-                        <% end %>
-                    <% end %>
-                </div>
+          <ul class="pt-feature-list pricing">
+            <li>Send Unlimited Events</li>
+            <li>Save time</li>
+            <li>Spread Awareness</li>
+            <li class="no-icon"></li>
+          </ul>
+        </div>
+        <div style="padding-left:40px; padding-top:10px">
+          <% if signed_in? %>
+            <% if pid == 1 %>
+              <%= link_to "Upgrade Plan", signup_path(:plan_id => 2, :downgrade => "no"),
+                :class => "btn btn-large btn-success btn-home", :id => "nomarg" %>
+              <% else %>
+                <% if pid == 2 %>
+                  <em>Current Plan</em>
+                <% else %>
+                  <%= link_to "Select Plan", signup_path(:plan_id => 2),
+                    :class => "btn btn-large btn-success btn-home", :id => "nomarg" %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
 
-			</li>
-			
-			
-		</ul>
-	</div>       
-	             
+          </li>
+
+
+        </ul>
+      </div>
