@@ -3,7 +3,7 @@
   <div style="width:1200px; margin:0 auto;">
 <header class="navbar navbar-top">
   <div style="padding-left:20px; padding-right:20px">
-      <%= link_to image_tag("logo.png", alt: "SendEvent"), root_path, id: "logo" %>
+      <%= link_to image_tag("logo.png", :alt => "SendEvent"), root_path, :id => "logo" %>
       <div class="container">
       <nav>
         <% if is_payform(yield(:title)) %>
@@ -20,7 +20,7 @@
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
+                  <%= link_to "Sign out", signout_path, :method => "delete" %>
                 </li>
               </ul>
             </li>

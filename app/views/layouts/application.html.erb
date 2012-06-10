@@ -2,8 +2,8 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <%= stylesheet_link_tag    "application", media: "all" %>
-    <%= stylesheet_link_tag    "jquery-ui-1.8.20.custom", media: "all" %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "jquery-ui-1.8.20.custom", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "https://js.stripe.com/v1/"%>
     <%= javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLIC_KEY}';"; %>
@@ -17,11 +17,10 @@
   <body>
     <%= render 'layouts/header' %>
     <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+      <%= content_tag(:div, value, :class => "alert alert-#{key}") %>
       <% end %>
       <%= yield %>
 
-    </div>
     <% if is_payform(:title) %>
 
     <% else %>
