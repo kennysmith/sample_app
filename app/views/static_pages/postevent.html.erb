@@ -8,7 +8,7 @@
     <div class="row">
       <div class="span6 offset3">
         <%= form_for(@event) do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
+          <%= render 'shared/error_messages', :object => f.object %>
           <div class="control-group">
             <%= f.label :name, :class=>"control-label" %><br />
             <%= f.text_field :name, :value => "event name" %>
@@ -31,7 +31,7 @@
           </div>
 
           <div class="actions">
-            <%= f.submit "Send my Event", class: "btn btn-large btn-primary", id: "submitacct" %>
+            <%= f.submit "Send my Event", class: "btn btn-large btn-primary", :id => "submitacct" %>
             </div>
           <% end %>
         </div>
