@@ -2,7 +2,7 @@ class Payment < ActiveRecord::Base
   belongs_to :user
   attr_accessible :card_expiry_date, :card_type, :last_4_digits, :stripe_id, :user_id,
     :stripe_token, :last_4_digits, :subscription_type,
-    :card_exp_month, :card_exp_year, :status, :eventsremaining
+    :card_exp_month, :card_exp_year
   
   attr_accessor :stripe_token, :card_exp_month, :card_exp_year,
     :subscription_type
@@ -10,8 +10,8 @@ class Payment < ActiveRecord::Base
   before_save :set_card_expiry_date
   before_save :update_stripe
 
-  #  validates :last_4_digits, :presence => true
-  #  validates :stripe_token, :presence => true
+  validates :last_4_digits, :presence => true
+  validates :stripe_token, :presence => true
   
   def set_card_expiry_date
     if self.card_exp_month.present? && self.card_exp_year.present?
@@ -27,8 +27,6 @@ class Payment < ActiveRecord::Base
     if stripe_token.present?
       self.subscription_type = SINGLE_PLAN if self.user.plan_id == "1"
       self.subscription_type = UNLIMITED_PLAN if self.user.plan_id == "2"
-      self.eventsremaining = self.user.plan.kisses
-      self.status = "notverified"
       if stripe_id.nil?
         customer = Stripe::Customer.create(
           :description => self.user.name,
@@ -62,44 +60,17 @@ class Payment < ActiveRecord::Base
   def upgrade
     if customer.present?
       customer.update_subscription({:plan => UNLIMITED_PLAN})
-      self.user.plan_id = "2"
-      if self.user.save
-        self.status = "notverified"
-        self.eventsremaining = self.user.plan.kisses
-        return self.save
-      else
-        return false
-      end
     end
   end
 
   def downgrade
     if customer.present?
-      customer.cancel_subscription
-      self.user.plan_id = "1"
-      if self.user.save
-        self.status = "active"
-        self.eventsremaining = self.user.plan.kisses
-        return self.save
+      if customer.subscription.present?
+        customer.cancel_subscription
       else
-        return false
+        return true
       end
     end
-  end
-
-  def handle_failed_payment!
-    self.status = "inactive"
-    return self.save
-  end
-
-  def handle_succeeded_payment!
-    self.status = "active"
-    return self.save
-  end
-
-  def decrease_event_count
-    self.eventsremaining = self.eventsremaining - 1
-    return self.save
   end
 
   def customer

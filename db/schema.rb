@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608200206) do
+ActiveRecord::Schema.define(:version => 20120610160605) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -32,11 +32,9 @@ ActiveRecord::Schema.define(:version => 20120608200206) do
     t.string   "last_4_digits"
     t.date     "card_expiry_date"
     t.string   "card_type"
+    t.string   "charge_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.string   "charge_id"
-    t.string   "status"
-    t.integer  "eventsremaining"
   end
 
   create_table "plans", :force => true do |t|
@@ -45,6 +43,15 @@ ActiveRecord::Schema.define(:version => 20120608200206) do
     t.integer  "kisses"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "plan_id"
+    t.string   "status"
+    t.integer  "eventsremaining"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -61,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20120608200206) do
     t.integer  "postsremaining"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

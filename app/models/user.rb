@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   belongs_to :plan
   has_many :events
   has_many :payments
+  has_many :subscriptions
   #has_many :subscriptions, :autosave => true
   
   #accepts_nested_attributes_for :subscriptions

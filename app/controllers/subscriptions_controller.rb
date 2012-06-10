@@ -2,35 +2,32 @@ class SubscriptionsController < ApplicationController
 	
   def edit
     @user = current_user
-    @payment = @user.payments.first
   end
 
   def upgrade
     @user = current_user
     @payment = @user.payments.first
-    if @payment.upgrade
-      sign_in @user
+    @subscription = @user.subscriptions.first
+    if @payment.upgrade && @subscription.upgrade
       flash[:success] = "Successfully Upgraded"
       redirect_to @user
     end
   rescue Stripe::StripeError => e
     logger.error e.message
-    @payment.errors.add :base, e.message
-    redirect_to upgrade_path
+    redirect_to upgrade_path, :notice => e.message
   end
 
   def downgrade
     @user = current_user
     @payment = @user.payments.first
-    if @payment.downgrade
-      sign_in @user
+    @subscription = @user.subscriptions.first
+    if @payment.downgrade && @subscription.downgrade
       flash[:success] = "Successfully Downgraded"
       redirect_to @user
     end
   rescue Stripe::StripeError => e
     logger.error e.message
-    @payment.errors.add :base, e.message
-    redirect_to root_path
+    redirect_to root_path, :notice => e.message
   end
 
   def show

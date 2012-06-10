@@ -3,7 +3,7 @@
 <%= current_user.postsremaining %> post remaining this month.
 <%= @current_user.remember_token %>
 <h1>Submit Event</h1>
-<% if @payment.status == "active" %>
+<% if @subscription.status == "active" %>
   <div style="width:1200px; margin:0 auto">
     <div class="row">
       <div class="span6 offset3">
@@ -37,17 +37,21 @@
         </div>
       </div>
     </div>
-  <% elsif @payment.status == "inactive" %>
+  <% elsif @subscription.status == "inactive" %>
     <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
-        Your Payment is Failed. Please Update billing information.<br/>
-        <%= link_to "Update Billing Info", edit_payment_path(current_user.payments.first) %>
+      Your Payment is Failed. Please Update billing information.<br/>
+      <%= link_to "Update Billing Info", edit_payment_path(current_user.payments.first) %>
     </div>
-  <% elsif @payment.status == "notverified" %>
+  <% elsif @subscription.status == "notverified" %>
     <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
-         Your payment is not verified yet. Please wait few moments.
+      Your payment is not verified yet. Please wait few moments.
     </div>
-  <% elsif @payment.status == "canceled" %>
+  <% elsif @subscription.status == "cancelled" %>
     <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
-         Your subscription is canceled.
+      Your subscription is cancelled.
+    </div>
+  <% elsif @subscription.status == "none" %>
+    <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
+      Your have no any active subscription.
     </div>
   <% end %>

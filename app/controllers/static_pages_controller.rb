@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
   def postevent
   	if signed_in?
   		@event = current_user.events.build
-      @payment = current_user.payments.first
+      @subscription = current_user.subscriptions.first
     else
       redirect_to root_path
   	end

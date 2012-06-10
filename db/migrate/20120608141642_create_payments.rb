@@ -6,7 +6,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string :last_4_digits
       t.date :card_expiry_date
       t.string :card_type
-
+      t.string :charge_id
       t.timestamps
     end
   end

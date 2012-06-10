@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @payment = @user.payments.first
+    @subscription = @user.subscriptions.first
   end
 
   def new
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     plan_id = params[:plan_id] || params[:user][:plan_id]
     @plan = Plan.find(plan_id)
     @user = @plan.users.build
-
   end
 
   def create
@@ -29,7 +28,7 @@ class UsersController < ApplicationController
     
     @user = User.new(params[:user])
     @user.payments.build(params[:payment])
-    
+    @user.subscriptions.build(:plan_id => @plan.id, :status => "notverified", :eventsremaining => @plan.kisses)
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the SendEvent!"
@@ -44,6 +43,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    @subscription = @user.subscriptions.first
+    @plan = @subscription.plan if @subscription.present?
   end
 
   def update
@@ -89,13 +91,12 @@ class UsersController < ApplicationController
   def cancel
     user = current_user
     payment = user.payments.first
-    payment.customer.cancel_subscription
-    payment.status = "canceled"
-    payment.eventsremaining = 0
-    payment.save
-    user.postsremaining = 0
-    user.plan_id = 0
-    user.save
+    payment.customer.cancel_subscription if payment.customer.subscription.present?
+    subscription = user.subscriptions.first
+    subscription.status = "cancelled"
+    subscription.eventsremaining = 0
+    subscription.plan_id = 0
+    subscription.save
     redirect_to root_path
   end
 
