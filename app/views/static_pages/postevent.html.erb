@@ -10,7 +10,7 @@
         <%= form_for(@event) do |f| %>
           <%= render 'shared/error_messages', :object => f.object %>
           <div class="control-group">
-            <%= f.label :name, :class=>"control-label" %><br />
+            <%= f.label :name, :class => "control-label" %><br />
             <%= f.text_field :name, :value => "event name" %>
           </div>
           <div class="control-group">
@@ -18,15 +18,15 @@
             <%= f.text_field :startdate, :value => "startdate" %>
           </div>
           <div class="control-group">
-            <%= f.label :enddate, :class=>"control-label" %><br />
+            <%= f.label :enddate, :class => "control-label" %><br />
             <%= f.text_field :enddate, :value => "end date" %>
           </div>
           <div class="control-group">
-            <%= f.label :starttime, :class=>"control-label" %><br />
+            <%= f.label :starttime, :class => "control-label" %><br />
             <%= f.text_field :starttime, :value => "starttime" %>
           </div>
           <div class="control-group">
-            <%= f.label :endtime, :class=>"control-label" %><br />
+            <%= f.label :endtime, :class => "control-label" %><br />
             <%= f.text_field :endtime, :value => "endtime" %>
           </div>
 
