@@ -21,7 +21,11 @@ class Subscription < ActiveRecord::Base
 
   def upgrade
     self.plan_id = "2"
-    self.status = "notverified"
+    if(Rails.env == 'development' || Rails.env == 'test')
+      self.status = "active"
+    else
+      self.status = "notverified"
+    end
     self.eventsremaining = self.plan.kisses
     return self.save
   end

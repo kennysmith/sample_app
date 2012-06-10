@@ -28,7 +28,12 @@ class UsersController < ApplicationController
     
     @user = User.new(params[:user])
     @user.payments.build(params[:payment])
-    @user.subscriptions.build(:plan_id => @plan.id, :status => "notverified", :eventsremaining => @plan.kisses)
+    if(Rails.env == 'development' || Rails.env == 'test')
+      status = 'active'
+    else
+      status = 'notverified'
+    end
+    @user.subscriptions.build(:plan_id => @plan.id, :status => status, :eventsremaining => @plan.kisses)
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the SendEvent!"
