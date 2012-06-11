@@ -1,20 +1,27 @@
 class SubscriptionsController < ApplicationController
-	
   def edit
     @user = current_user
+    @payment = @user.payments.first
   end
 
   def upgrade
     @user = current_user
     @payment = @user.payments.first
     @subscription = @user.subscriptions.first
-    if @payment.upgrade && @subscription.upgrade
+
+    month = params[:payment][:"expiry_date(2i)"]
+    year = params[:payment][:"expiry_date(1i)"]
+    card = params[:payment][:credit_card_number]
+    cvc = params[:payment][:cvc]
+
+    if @payment.handle_billing_update(card, cvc, year, month) && @payment.upgrade && @subscription.upgrade
       flash[:success] = "Successfully Upgraded"
       redirect_to @user
     end
   rescue Stripe::StripeError => e
     logger.error e.message
-    redirect_to upgrade_path, :notice => e.message
+    @payment.errors.add :base, e.message
+    render 'edit'
   end
 
   def downgrade

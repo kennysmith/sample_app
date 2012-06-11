@@ -6,7 +6,7 @@
       <div class="span7 offset4">
         <h1>Update your profile</h1>
         <%= form_for @user, :html => { :class => "form-inline" } do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
+          <%= render 'shared/error_messages', :object => f.object %>
           <div class="control-group">
             <%= f.label :name, :class => "control-label" %>
             <%= f.text_field :name %>
@@ -26,30 +26,84 @@
             <%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %>
             <%= f.password_field :password_confirmation %>
           </div>
-          <%= f.submit "Save changes", class: "btn btn-large btn-primary", id: "submitacct" %>
-          <% end %>
-          <h3 class="two">Plan Info</h3>
-          <p>You are currently subscribed to the <%= @plan.name if @plan.present? %> plan, which gives you <%= pluralize(@plan.kisses, 'event') if @plan.present? %> to post this month.</p>
-          <% if @subscription.present? && @subscription.plan_id == 1 %>
-            <p>If you'd like to send more events this month, please select from the following options:</p>
-            <div class="control-group">
-              <%= link_to "Upgrade my plan ->", upgrade_path,
-                class: "btn btn-large btn-success btn-home", id: "nomarg" %>
-              </div>
-            <% elsif @subscription.present? && @subscription.plan_id == 2 %>
+
+          <div class="expan-update-billing-info">
+            |<span id="expan-billing-info">+</span>|-------- Update your billing information
+          </div>
+
+          <div id="billing-update-form">
+            <%= fields_for(@payment ||= Payment.new) do |p| %>
               <div class="control-group">
-                <%= link_to "Downgrade my plan ->", downgrade_confirm_path,
-                  class: "btn btn-large btn-danger btn-home", id: "nomarg" %>
-                </div>
-              <% elsif @subscription.present? && @subscription.plan_id == 0 %>
-                <p>You have no any active subscription</p>
-                <div class="control-group">
-                  <%= link_to "Upgrade my plan ->", upgrade_path,
-                    class: "btn btn-large btn-success btn-home", id: "nomarg" %>
-                  </div>
-                <% end %>
-
-
-
+                <%= p.label :credit_card_number, "Card Number ", :class => "control-label" %>
+                <%= p.text_field :credit_card_number %>
               </div>
-            </div>
+              <div class="control-group">
+                <%= p.label :cvc, "Security Code (CVV)", :class => "control-label" %>
+                <%= p.text_field :cvc %>
+              </div>
+              <div class="control-group">
+                <%= p.label :expiry_date, "Card Expiration", :class => "control-label" %>
+                <%= p.date_select :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25}, {:class => 'small'} %>
+              </div>
+            <% end %>
+          </div>
+
+          <%= f.submit "Save changes", :class => "btn btn-large btn-primary", :id => "submitacct" %>
+        <% end %>
+        <h3 class="two">Plan Info</h3>
+        <p>You are currently subscribed to the <%= @plan.name if @plan.present? %> plan, which gives you <%= pluralize(@plan.kisses, 'event') if @plan.present? %> to post this month.</p>
+        <% if @subscription.present? && @subscription.plan_id == 1 %>
+          <p>If you'd like to send more events this month, please select from the following options:</p>
+          <div class="control-group">
+            <%= link_to "Upgrade my plan ->", upgrade_path,
+              :class => "btn btn-large btn-success btn-home", :id => "nomarg" %>
+          </div>
+        <% elsif @subscription.present? && @subscription.plan_id == 2 %>
+          <div class="control-group">
+            <%= link_to "Downgrade my plan ->", downgrade_confirm_path,
+              :class => "btn btn-large btn-danger btn-home", :id => "nomarg" %>
+          </div>
+        <% elsif @subscription.present? && @subscription.plan_id == 0 %>
+          <p>You have no any active subscription</p>
+          <div class="control-group">
+            <%= link_to "Upgrade my plan ->", upgrade_path,
+              :class => "btn btn-large btn-success btn-home", :id => "nomarg" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('span#expan-billing-info').click(function(){
+      $('div#billing-update-form').toggle('slow');
+      var a_text = $("span#expan-billing-info").text();
+      if (a_text == "+")
+      {
+        $('span#expan-billing-info').text('-');
+      }
+      else
+      {
+        $('span#expan-billing-info').text('+');
+      }
+    });
+
+    var card = $('#payment_credit_card_number').val();
+    if (card.length > 0)
+    {
+      $('div#billing-update-form').toggle('slow');
+      var a_text = $("span#expan-billing-info").text();
+      if (a_text == "+")
+      {
+        $('span#expan-billing-info').text('-');
+      }
+      else
+      {
+        $('span#expan-billing-info').text('+');
+      }
+    }
+  });
+</script>

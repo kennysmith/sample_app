@@ -7,11 +7,14 @@ class Payment < ActiveRecord::Base
   attr_accessor :stripe_token, :card_exp_month, :card_exp_year,
     :subscription_type
 
+  attr_accessible :credit_card_number, :cvc, :expiry_date
+  attr_accessor :credit_card_number, :cvc, :expiry_date
+
   before_save :set_card_expiry_date
   before_save :update_stripe
 
-  validates :last_4_digits, :presence => true
-  validates :stripe_token, :presence => true
+  #validates :last_4_digits, :presence => true
+  #validates :stripe_token, :presence => true
   
   def set_card_expiry_date
     if self.card_exp_month.present? && self.card_exp_year.present?
@@ -75,5 +78,34 @@ class Payment < ActiveRecord::Base
 
   def customer
     @customer ||= Stripe::Customer.retrieve(self.stripe_id) rescue nil
+  end
+
+  def handle_billing_update(card, cvc, year, month)
+    if card.present?
+      self.card_exp_month = month
+      self.card_exp_year = year
+      self.cvc = cvc
+      self.credit_card_number = card
+      if self.create_card_token
+        return self.save
+      end
+    else
+      return true
+    end
+  end
+
+  def create_card_token
+    token = Stripe::Token.create( :card => {
+        :number => self.credit_card_number,
+        :exp_month => self.card_exp_month,
+        :exp_year => self.card_exp_year,
+        :cvc => self.cvc },
+      :currency => "usd" )
+    if token.present?
+      self.last_4_digits = token.card.last4
+      self.card_type = token.card.type
+      customer.card = token.id
+      return customer.save
+    end
   end
 end

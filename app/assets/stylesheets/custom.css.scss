@@ -586,6 +586,8 @@ img { border: 0; }
 #credit-card{
   position: relative;
 }
+
+#billing-update-form .small,
 #credit-card .small{
   width: 159px;
 }
@@ -604,4 +606,33 @@ img { border: 0; }
   top: 0;
   width: 240px;
   color: white;
+}
+
+.expan-update-billing-info{
+    font-size: 16px;
+    padding-left: 125px;
+}
+
+.expan-update-billing-info.upgrade{
+  padding-left: 45px;
+  color: white;
+  margin-top: 10px;
+}
+
+.expan-update-billing-info span{
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  color: #3546af;
+}
+
+#billing-update-form{
+ display: none;
+ margin-top: 15px;
+}
+
+.billing-info{
+ color: white;
+ padding-left: 45px;
 }

@@ -1,9 +1,7 @@
 SampleApp::Application.routes.draw do
 
   post 'stripe/webhook'
-
-  resources :payments, only: [:edit, :update]
-
+  
   get "ex_user_comments/new"
 
   resources :sessions, only: [:new, :create, :destroy]

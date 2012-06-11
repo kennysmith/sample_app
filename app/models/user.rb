@@ -47,12 +47,13 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
-
+  
   before_save :validate_email_uniqueness
+  after_save :user_email_sync_with_stripe
 
   def validate_email_uniqueness
     user = User.find_by_email(self.email)
-    if user.present?
+    if user.present? && user.id != self.id
       self.errors.add :email, "has already been taken"
       return false
     else
@@ -60,36 +61,46 @@ class User < ActiveRecord::Base
     end
   end
 
-#  def save_with_payment
-#    if valid?
-#      customer = Stripe::Customer.create(
-#        email:email,
-#        plan: plan_id,
-#        card: stripe_card_token )
-#      self.stripe_customer_token = customer.id
-#      save!
-#    end
-#    rescue Stripe::InvalidRequestError => e
-#      logger.error "Stripe error while creating customer: #{e.message}"
-#      errors.add :base, "There was a problem with your credit card."
-#      false
-#  end
-#
-#  def paid_upgrade
-#    if valid?
-#      upgrade = Stripe::Charge.create(
-#        card: stripe_card_token,
-#        customer: stripe_customer_token,
-#        )
-#    end
-#  end
+  def user_email_sync_with_stripe
+    payment = self.payments.first
+    customer = payment.customer if payment.present?
+    if customer.present? && (self.email_was != self.email || self.name_was != self.name)
+      customer.email = self.email
+      customer.description = self.name
+      customer.save
+    end
+  end
+
+  #  def save_with_payment
+  #    if valid?
+  #      customer = Stripe::Customer.create(
+  #        email:email,
+  #        plan: plan_id,
+  #        card: stripe_card_token )
+  #      self.stripe_customer_token = customer.id
+  #      save!
+  #    end
+  #    rescue Stripe::InvalidRequestError => e
+  #      logger.error "Stripe error while creating customer: #{e.message}"
+  #      errors.add :base, "There was a problem with your credit card."
+  #      false
+  #  end
+  #
+  #  def paid_upgrade
+  #    if valid?
+  #      upgrade = Stripe::Charge.create(
+  #        card: stripe_card_token,
+  #        customer: stripe_customer_token,
+  #        )
+  #    end
+  #  end
 
 
   private
 
-  	def create_remember_token
-  		self.remember_token = SecureRandom.urlsafe_base64
-  	end
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
 
 
 end

@@ -40,7 +40,7 @@
   <% elsif @subscription.status == "inactive" %>
     <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
       Your Payment is Failed. Please Update billing information.<br/>
-      <%= link_to "Update Billing Info", edit_payment_path(current_user.payments.first) %>
+      <%= link_to "Update Billing Info", edit_user_path(current_user.payments.first) %>
     </div>
   <% elsif @subscription.status == "notverified" %>
     <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
@@ -48,10 +48,12 @@
     </div>
   <% elsif @subscription.status == "cancelled" %>
     <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
-      Your subscription is cancelled.
+      Your subscription is cancelled.<br/>
+      <%= link_to "Upgrade", upgrade_path %>
     </div>
   <% elsif @subscription.status == "none" %>
     <div style="width:1200px; margin:0 auto; text-align: center; color: red;">
-      Your have no any active subscription.
+      Your have no any active subscription.<br/>
+      <%= link_to "Upgrade", upgrade_path %>
     </div>
   <% end %>
