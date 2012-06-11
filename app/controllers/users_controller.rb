@@ -34,7 +34,8 @@ class UsersController < ApplicationController
       status = 'notverified'
     end
     @user.subscriptions.build(:plan_id => @plan.id, :status => status, :eventsremaining => @plan.kisses)
-    if @user.save
+    logger.info "user :::::::::::::: #{@user.valid?}"
+    if @user.valid? && @user.save
       sign_in @user
       flash[:success] = "Welcome to the SendEvent!"
       redirect_to @user

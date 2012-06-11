@@ -1,7 +1,7 @@
 <% downgrade = params[:downgrade] %>
 
 
-<%= form_for @user, :html => {:class => "form-inline"} do |f|  %>
+<%= form_for @user, :html => {:class => "form-inline"}, :validate => true do |f|  %>
   <%= render 'shared/error_messages', object: f.object %>
   <% if downgrade == nil %>
     <div class="control-group">

@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     
 
   attr_accessible :subscriptions_attributes, :plan
-  attr_accessible :stripe_card_token, :plan_id, :email, :postsremaining
+  attr_accessible :stripe_card_token, :plan_id, :postsremaining
   attr_accessible :email, :name, :password, :password_confirmation
 
   belongs_to :plan
