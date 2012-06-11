@@ -38,9 +38,8 @@ class User < ActiveRecord::Base
   
   #accepts_nested_attributes_for :subscriptions
 
-  validates_presence_of :plan_id
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates :plan_id, :presence => true
+  validates :email, :presence => true, :uniqueness => true
 
   has_secure_password
 
