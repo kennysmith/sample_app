@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   #accepts_nested_attributes_for :subscriptions
 
   validates :plan_id, :presence => true
-  validates :email, :presence => true, :uniqueness => true
+  validates :email, :presence => true
 
   has_secure_password
 
@@ -47,6 +47,18 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
+
+  before_save :validate_email_uniqueness
+
+  def validate_email_uniqueness
+    user = User.find_by_email(self.email)
+    if user.present?
+      self.errors.add :email, "has already been taken"
+      return false
+    else
+      return true
+    end
+  end
 
 #  def save_with_payment
 #    if valid?
